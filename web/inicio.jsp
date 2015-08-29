@@ -40,10 +40,12 @@
     </nav>
     <div class="container-fluid">
       <div class="row">
-        <h2><% 
-              String resultado =(String)request.getAttribute("resultado");
-              out.println(resultado);
-              %>
+        <h2>
+          <!--RECIBO LA VARIABLE QUE TRAE EL SERVLET Y PARA PODER USAR JAVA EN EL .jsp USO LOS SIMBOLOS < %-->
+          <%
+            String resultado = (String) request.getAttribute("resultado");
+            out.println(resultado);
+          %>
         </h2>
       </div>
     </div>

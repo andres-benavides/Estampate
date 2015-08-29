@@ -35,14 +35,26 @@ public class LogIn extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     try {
-      String rs;
+      /*
+      CREO UNA VARIABLE STRING (respuesta) EN LA CUAL VOY A DEVOLVER UN VALOR AL .JSP QUE VOY A CARGAR PARA VERLO EN EL NAVEGADOR
+      */
+      String respuesta;
+      /*
+      SI ingreso ES VERDADERO ES POR QUE LOS DATOS ESTAN BIEN ENTONCES DA LA BIENVENIDA SI NO ERROR EN LOS DATOS
+      */
       if(ingreso){
-         rs = "Bienvenido Administrador";
+         respuesta = "Bienvenido Administrador";
       }else{
-        rs = "Error en los datos de ingreso";
+        respuesta = "Error en los datos de ingreso";
       }
-      
-      request.setAttribute("resultado", rs);
+      /*
+      LE DOY EL NOMBRE "resultado" Y EL VALOR DEL STRING respuesta A UNA VARIABLE QUE VOY A PODER USAR EN EL .jsp QUE VOY A CARGAR
+      */
+      request.setAttribute("resultado", respuesta);
+      /*
+      POR ULTIMO LLAMO EL NUEVO .jsp PARA MOSTRAR LOS RESULTADOS DEL SERVLET. EL NUEVO .jsp QUE VOY A CARGAR SE LLAMA INICIO.
+      TAMBIEN LE ENVÍON LA VARIBLE resultado QUE ACABO DE CREAR
+      */
       request.getRequestDispatcher("inicio.jsp").forward(request, response);
     } finally {
       out.close();
@@ -75,14 +87,16 @@ public class LogIn extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
+    /*
+    RECIBO LOS PARAMETROS QUE VIENEN DEL FORMULARIO PARA HACER LA VALIDACION
+    */
     String user = request.getParameter("user");
     String passwrd = request.getParameter("passwrd");
-    
-    if(user.equals("admin") && passwrd.equals("123")){
-      ingreso = true;
-    }else{
-      ingreso = false;
-    }
+    /*
+    ACA LE DIGO QUE SI EL CAMPO USUARIO DEL FORMULARIO ES IGUAL A ADMIN Y EL CAMPO PASSWRD ES IGUAL A 123 LA VARIABLE
+    ingreso VA HACER VERDADERA
+    */
+    ingreso = user.equals("admin") && passwrd.equals("123");
     processRequest(request, response);
   }
 
