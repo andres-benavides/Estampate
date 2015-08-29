@@ -22,7 +22,7 @@
           <a class="navbar-brand" href="#">Estampate</a>
         </div>
         <div class="collapse navbar-collapse" >
-          <button type="button" class="btn btn-primary navbar-btn" id="btnSession">Iniciar Secion</button>
+          <button type="button" class="btn btn-primary navbar-btn" id="btnSession">Iniciar Sesion</button>
           <!--FORMULARIO PARA INICIAR SESSION-->
           <div id="iniSession" style="display: none">
             <form class="navbar-form navbar-left" method="POST" action="LogIn" role="search">
