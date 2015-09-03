@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2/09/2015 08:09:48 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.estampate.corteI.hibernate.Administrador" table="administrador" catalog="proyectoestampate" optimistic-lock="version">
+        <id name="idAdmin" type="java.lang.Integer">
+            <column name="id_admin" />
+            <generator class="identity" />
+        </id>
+        <property name="usuario" type="string">
+            <column name="usuario" length="30" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="40" />
+        </property>
+    </class>
+</hibernate-mapping>

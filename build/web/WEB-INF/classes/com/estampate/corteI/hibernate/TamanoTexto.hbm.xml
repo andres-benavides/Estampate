@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2/09/2015 08:09:48 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.estampate.corteI.hibernate.TamanoTexto" table="tamano_texto" catalog="proyectoestampate" optimistic-lock="version">
+        <id name="idTamanoTexto" type="java.lang.Integer">
+            <column name="id_tamano_texto" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="precioTexto" class="com.estampate.corteI.hibernate.PrecioTexto" fetch="select">
+            <column name="id_precio_texto" not-null="true" />
+        </many-to-one>
+        <property name="especificacionTamano" type="string">
+            <column name="especificacion_tamano" length="30" not-null="true" />
+        </property>
+        <set name="textoCamisetas" table="texto_camiseta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_tamano_texto" not-null="true" />
+            </key>
+            <one-to-many class="com.estampate.corteI.hibernate.TextoCamiseta" />
+        </set>
+        <set name="facturaDetalles" table="factura_detalle" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_tamano_texto" not-null="true" />
+            </key>
+            <one-to-many class="com.estampate.corteI.hibernate.FacturaDetalle" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2/09/2015 08:09:48 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.estampate.corteI.hibernate.FacturaDetalle" table="factura_detalle" catalog="proyectoestampate" optimistic-lock="version">
+        <id name="idFacturaDetalle" type="java.lang.Integer">
+            <column name="id_factura_detalle" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="camiseta" class="com.estampate.corteI.hibernate.Camiseta" fetch="select">
+            <column name="id_camiseta" not-null="true" />
+        </many-to-one>
+        <many-to-one name="colorCamiseta" class="com.estampate.corteI.hibernate.ColorCamiseta" fetch="select">
+            <column name="id_color" not-null="true" />
+        </many-to-one>
+        <many-to-one name="estampaCamiseta" class="com.estampate.corteI.hibernate.EstampaCamiseta" fetch="select">
+            <column name="id_estampa_camiseta" not-null="true" />
+        </many-to-one>
+        <many-to-one name="factura" class="com.estampate.corteI.hibernate.Factura" fetch="select">
+            <column name="id_factura" not-null="true" />
+        </many-to-one>
+        <many-to-one name="formaPago" class="com.estampate.corteI.hibernate.FormaPago" fetch="select">
+            <column name="id_forma_pago" not-null="true" />
+        </many-to-one>
+        <many-to-one name="lugarEstampaCamiseta" class="com.estampate.corteI.hibernate.LugarEstampaCamiseta" fetch="select">
+            <column name="id_lugar_estampa_camiseta" not-null="true" />
+        </many-to-one>
+        <many-to-one name="materialCamiseta" class="com.estampate.corteI.hibernate.MaterialCamiseta" fetch="select">
+            <column name="id_material" not-null="true" />
+        </many-to-one>
+        <many-to-one name="precioCamiseta" class="com.estampate.corteI.hibernate.PrecioCamiseta" fetch="select">
+            <column name="id_precio_camiseta" not-null="true" />
+        </many-to-one>
+        <many-to-one name="precioEstampa" class="com.estampate.corteI.hibernate.PrecioEstampa" fetch="select">
+            <column name="id_precio_estampa" not-null="true" />
+        </many-to-one>
+        <many-to-one name="precioTexto" class="com.estampate.corteI.hibernate.PrecioTexto" fetch="select">
+            <column name="id_precio_texto" not-null="true" />
+        </many-to-one>
+        <many-to-one name="stock" class="com.estampate.corteI.hibernate.Stock" fetch="select">
+            <column name="id_stock" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tallaCamiseta" class="com.estampate.corteI.hibernate.TallaCamiseta" fetch="select">
+            <column name="id_talla" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tamanoEstampa" class="com.estampate.corteI.hibernate.TamanoEstampa" fetch="select">
+            <column name="id_tamano_estampa" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tamanoTexto" class="com.estampate.corteI.hibernate.TamanoTexto" fetch="select">
+            <column name="id_tamano_texto" not-null="true" />
+        </many-to-one>
+        <many-to-one name="temaEstampa" class="com.estampate.corteI.hibernate.TemaEstampa" fetch="select">
+            <column name="id_tema_estampa" not-null="true" />
+        </many-to-one>
+        <many-to-one name="textoCamiseta" class="com.estampate.corteI.hibernate.TextoCamiseta" fetch="select">
+            <column name="id_texto_camiseta" not-null="true" />
+        </many-to-one>
+        <property name="fecha" type="string">
+            <column name="fecha" length="30" not-null="true" />
+        </property>
+        <property name="precioTotal" type="int">
+            <column name="precio_total" not-null="true" />
+        </property>
+        <set name="facturas" table="factura" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_factura_detalle" not-null="true" />
+            </key>
+            <one-to-many class="com.estampate.corteI.hibernate.Factura" />
+        </set>
+    </class>
+</hibernate-mapping>

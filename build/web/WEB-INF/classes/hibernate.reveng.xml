@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="proyectoestampate"/>
+  <table-filter match-name="forma_pago"/>
+  <table-filter match-name="stock"/>
+  <table-filter match-name="tamano_estampa"/>
+  <table-filter match-name="talla_camiseta"/>
+  <table-filter match-name="tema_estampa"/>
+  <table-filter match-name="factura_detalle"/>
+  <table-filter match-name="comprador"/>
+  <table-filter match-name="lugar_estampa_camiseta"/>
+  <table-filter match-name="factura"/>
+  <table-filter match-name="precio_texto"/>
+  <table-filter match-name="rating_estampa"/>
+  <table-filter match-name="tamano_texto"/>
+  <table-filter match-name="color_camiseta"/>
+  <table-filter match-name="precio_camiseta"/>
+  <table-filter match-name="artista"/>
+  <table-filter match-name="precio_estampa"/>
+  <table-filter match-name="texto_camiseta"/>
+  <table-filter match-name="estampa_camiseta"/>
+  <table-filter match-name="camiseta"/>
+  <table-filter match-name="administrador"/>
+  <table-filter match-name="material_camiseta"/>
+</hibernate-reverse-engineering>

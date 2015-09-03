@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/proyectoestampate?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
+    <mapping resource="com/estampate/corteI/hibernate/TamanoTexto.hbm.xml"/>
+    <mapping resource="com/estampate/corteI/hibernate/Camiseta.hbm.xml"/>
+    <mapping resource="com/estampate/corteI/hibernate/PrecioCamiseta.hbm.xml"/>
+    <mapping resource="com/estampate/corteI/hibernate/ColorCamiseta.hbm.xml"/>
+    <mapping resource="com/estampate/corteI/hibernate/FormaPago.hbm.xml"/>
+    <mapping resource="com/estampate/corteI/hibernate/PrecioEstampa.hbm.xml"/>
+    <mapping resource="com/estampate/corteI/hibernate/TextoCamiseta.hbm.xml"/>
+    <mapping resource="com/estampate/corteI/hibernate/Comprador.hbm.xml"/>
+    <mapping resource="com/estampate/corteI/hibernate/Factura.hbm.xml"/>
+    <mapping resource="com/estampate/corteI/hibernate/Stock.hbm.xml"/>
+    <mapping resource="com/estampate/corteI/hibernate/TemaEstampa.hbm.xml"/>
+    <mapping resource="com/estampate/corteI/hibernate/EstampaCamiseta.hbm.xml"/>
+    <mapping resource="com/estampate/corteI/hibernate/Artista.hbm.xml"/>
+    <mapping resource="com/estampate/corteI/hibernate/TamanoEstampa.hbm.xml"/>
+    <mapping resource="com/estampate/corteI/hibernate/MaterialCamiseta.hbm.xml"/>
+    <mapping resource="com/estampate/corteI/hibernate/TallaCamiseta.hbm.xml"/>
+    <mapping resource="com/estampate/corteI/hibernate/RatingEstampa.hbm.xml"/>
+    <mapping resource="com/estampate/corteI/hibernate/FacturaDetalle.hbm.xml"/>
+    <mapping resource="com/estampate/corteI/hibernate/Administrador.hbm.xml"/>
+    <mapping resource="com/estampate/corteI/hibernate/LugarEstampaCamiseta.hbm.xml"/>
+    <mapping resource="com/estampate/corteI/hibernate/PrecioTexto.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>
