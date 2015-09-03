@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 2/09/2015 08:09:48 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 2/09/2015 10:57:56 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.estampate.corteI.hibernate.LugarEstampaCamiseta" table="lugar_estampa_camiseta" catalog="proyectoestampate" optimistic-lock="version">
         <id name="idLugarEstampaCamiseta" type="java.lang.Integer">

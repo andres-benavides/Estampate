@@ -29,7 +29,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-6 col-ms-6 col-xs-6">
-          <form class="form-horizontal" action="guardarUsuario" method="post" role="form"  >
+          <form class="form-horizontal" action="guardarRegistro" method="post" role="form"  >
             <div class="form-group">
               <label class="col-lg-2 control-label"  class="col-lg-2 control-label" for="nombre">Nombre:</label>
               <div class="col-lg-7">
@@ -49,9 +49,9 @@
               </div>
             </div>
             <div class="form-group">
-              <label class="col-lg-2 control-label"  for="telefono">Cedula:</label>
+              <label class="col-lg-2 control-label"  for="cedula">Cedula:</label>
               <div class="col-lg-7">
-                <input type="number" name="telefono" id="telefono" class="form-control" />
+                <input type="number" name="cedula" id="cedula" class="form-control" />
               </div>
             </div>
             <div class="form-group">

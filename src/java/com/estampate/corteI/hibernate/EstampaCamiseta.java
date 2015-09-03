@@ -1,5 +1,5 @@
 package com.estampate.corteI.hibernate;
-// Generated 2/09/2015 08:09:47 PM by Hibernate Tools 4.3.1
+// Generated 2/09/2015 10:57:56 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,6 +12,7 @@ public class EstampaCamiseta  implements java.io.Serializable {
 
 
      private Integer idEstampaCamiseta;
+     private Artista artista;
      private RatingEstampa ratingEstampa;
      private TamanoEstampa tamanoEstampa;
      private TemaEstampa temaEstampa;
@@ -19,7 +20,6 @@ public class EstampaCamiseta  implements java.io.Serializable {
      private String imagenes;
      private String ubicacion;
      private int precio;
-     private int idArtista;
      private int idLugarEstampa;
      private Set<FacturaDetalle> facturaDetalles = new HashSet<FacturaDetalle>(0);
      private Set<Camiseta> camisetas = new HashSet<Camiseta>(0);
@@ -28,7 +28,8 @@ public class EstampaCamiseta  implements java.io.Serializable {
     }
 
 	
-    public EstampaCamiseta(RatingEstampa ratingEstampa, TamanoEstampa tamanoEstampa, TemaEstampa temaEstampa, String descripcion, String imagenes, String ubicacion, int precio, int idArtista, int idLugarEstampa) {
+    public EstampaCamiseta(Artista artista, RatingEstampa ratingEstampa, TamanoEstampa tamanoEstampa, TemaEstampa temaEstampa, String descripcion, String imagenes, String ubicacion, int precio, int idLugarEstampa) {
+        this.artista = artista;
         this.ratingEstampa = ratingEstampa;
         this.tamanoEstampa = tamanoEstampa;
         this.temaEstampa = temaEstampa;
@@ -36,10 +37,10 @@ public class EstampaCamiseta  implements java.io.Serializable {
         this.imagenes = imagenes;
         this.ubicacion = ubicacion;
         this.precio = precio;
-        this.idArtista = idArtista;
         this.idLugarEstampa = idLugarEstampa;
     }
-    public EstampaCamiseta(RatingEstampa ratingEstampa, TamanoEstampa tamanoEstampa, TemaEstampa temaEstampa, String descripcion, String imagenes, String ubicacion, int precio, int idArtista, int idLugarEstampa, Set<FacturaDetalle> facturaDetalles, Set<Camiseta> camisetas) {
+    public EstampaCamiseta(Artista artista, RatingEstampa ratingEstampa, TamanoEstampa tamanoEstampa, TemaEstampa temaEstampa, String descripcion, String imagenes, String ubicacion, int precio, int idLugarEstampa, Set<FacturaDetalle> facturaDetalles, Set<Camiseta> camisetas) {
+       this.artista = artista;
        this.ratingEstampa = ratingEstampa;
        this.tamanoEstampa = tamanoEstampa;
        this.temaEstampa = temaEstampa;
@@ -47,7 +48,6 @@ public class EstampaCamiseta  implements java.io.Serializable {
        this.imagenes = imagenes;
        this.ubicacion = ubicacion;
        this.precio = precio;
-       this.idArtista = idArtista;
        this.idLugarEstampa = idLugarEstampa;
        this.facturaDetalles = facturaDetalles;
        this.camisetas = camisetas;
@@ -59,6 +59,13 @@ public class EstampaCamiseta  implements java.io.Serializable {
     
     public void setIdEstampaCamiseta(Integer idEstampaCamiseta) {
         this.idEstampaCamiseta = idEstampaCamiseta;
+    }
+    public Artista getArtista() {
+        return this.artista;
+    }
+    
+    public void setArtista(Artista artista) {
+        this.artista = artista;
     }
     public RatingEstampa getRatingEstampa() {
         return this.ratingEstampa;
@@ -108,13 +115,6 @@ public class EstampaCamiseta  implements java.io.Serializable {
     
     public void setPrecio(int precio) {
         this.precio = precio;
-    }
-    public int getIdArtista() {
-        return this.idArtista;
-    }
-    
-    public void setIdArtista(int idArtista) {
-        this.idArtista = idArtista;
     }
     public int getIdLugarEstampa() {
         return this.idLugarEstampa;
