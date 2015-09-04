@@ -1,5 +1,5 @@
 package com.estampate.corteI.hibernate;
-// Generated 2/09/2015 10:57:56 PM by Hibernate Tools 4.3.1
+// Generated 3/09/2015 11:13:42 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -19,7 +19,7 @@ public class EstampaCamiseta  implements java.io.Serializable {
      private String descripcion;
      private String imagenes;
      private String ubicacion;
-     private int precio;
+     private String precio;
      private int idLugarEstampa;
      private Set<FacturaDetalle> facturaDetalles = new HashSet<FacturaDetalle>(0);
      private Set<Camiseta> camisetas = new HashSet<Camiseta>(0);
@@ -28,7 +28,7 @@ public class EstampaCamiseta  implements java.io.Serializable {
     }
 
 	
-    public EstampaCamiseta(Artista artista, RatingEstampa ratingEstampa, TamanoEstampa tamanoEstampa, TemaEstampa temaEstampa, String descripcion, String imagenes, String ubicacion, int precio, int idLugarEstampa) {
+    public EstampaCamiseta(Artista artista, RatingEstampa ratingEstampa, TamanoEstampa tamanoEstampa, TemaEstampa temaEstampa, String descripcion, String imagenes, String ubicacion, String precio, int idLugarEstampa) {
         this.artista = artista;
         this.ratingEstampa = ratingEstampa;
         this.tamanoEstampa = tamanoEstampa;
@@ -39,7 +39,7 @@ public class EstampaCamiseta  implements java.io.Serializable {
         this.precio = precio;
         this.idLugarEstampa = idLugarEstampa;
     }
-    public EstampaCamiseta(Artista artista, RatingEstampa ratingEstampa, TamanoEstampa tamanoEstampa, TemaEstampa temaEstampa, String descripcion, String imagenes, String ubicacion, int precio, int idLugarEstampa, Set<FacturaDetalle> facturaDetalles, Set<Camiseta> camisetas) {
+    public EstampaCamiseta(Artista artista, RatingEstampa ratingEstampa, TamanoEstampa tamanoEstampa, TemaEstampa temaEstampa, String descripcion, String imagenes, String ubicacion, String precio, int idLugarEstampa, Set<FacturaDetalle> facturaDetalles, Set<Camiseta> camisetas) {
        this.artista = artista;
        this.ratingEstampa = ratingEstampa;
        this.tamanoEstampa = tamanoEstampa;
@@ -109,11 +109,11 @@ public class EstampaCamiseta  implements java.io.Serializable {
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
     }
-    public int getPrecio() {
+    public String getPrecio() {
         return this.precio;
     }
     
-    public void setPrecio(int precio) {
+    public void setPrecio(String precio) {
         this.precio = precio;
     }
     public int getIdLugarEstampa() {

@@ -1,8 +1,9 @@
 $(document).ready(function(){
-  console.log(111);
   $("#btnSession").click(function(){
-    $("#iniSession").fadeIn();
-    console.log(666);
+    $("#iniSession").toggle( "slow" );
+  });
+  $(".btn-registro").click(function(){
+    $("#registro").toggle( "slow" );
   });
 });
 

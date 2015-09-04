@@ -77,14 +77,15 @@ public class guardarRegistro extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     guardarRegistroDAO registro = new guardarRegistroDAO();
+    String tipo = request.getParameter("tipo");
     String nombre = request.getParameter("nombre");
     String apellido = request.getParameter("apellido");
     String direccion = request.getParameter("direccion");
-    int cedula = Integer.parseInt(request.getParameter("cedula"));
-    int celular = Integer.parseInt(request.getParameter("celular"));
+    String cedula = (request.getParameter("cedula"));
+    String celular = (request.getParameter("celular"));
     String usuario = request.getParameter("usuario");
     String password = request.getParameter("password");
-    registro.guardar(nombre, apellido, direccion, cedula, celular, usuario, password);
+    registro.guardar(nombre, apellido, direccion, cedula, celular, usuario, password,tipo);
     processRequest(request, response);
   }
 

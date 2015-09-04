@@ -14,29 +14,39 @@
     <script type="text/javascript" src="js/funciones.js"></script>
     <link rel="stylesheet" href="js/libs/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
     <title>Estampate!!!!</title>
+    <style type="text/css">
+      a{
+        text-decoration: none;
+        color: black;
+      }
+    </style>
   </head>
   <body>
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Estampate</a>
-        </div>
-        <div class="collapse navbar-collapse" >
-          <button type="button" class="btn btn-primary navbar-btn" id="btnSession">Iniciar Sesion</button>
-          <!--FORMULARIO PARA INICIAR SESSION-->
-          <div id="iniSession" style="display: none">
-            <form class="navbar-form navbar-left" method="POST" action="LogIn" role="search">
-              <div class="form-group">
-                <input type="text" class="form-control" name="user" placeholder="Usuario">
-              </div>
-              <div class="form-group">
-                <input type="password" class="form-control" name="passwrd" placeholder="Contraseña">
-              </div>
-              <button type="submit" class="btn btn-success">Ingresar</button>
-            </form>
-          </div>
+          <a class="navbar-brand" href="#">Bienvenido a Estampate</a>
         </div>
       </div>
     </nav>
+    <div class="row">
+      <div class="col-xs-4">
+      </div>
+      <div class="col-xs-4">
+        <div class="row">
+          <div class="col-xs-4">
+            <a href="loginUser.jsp"><button class="btn btn-primary" >Comprador</button></a>
+          </div>
+          <div class="col-xs-4">
+           <a href="loginArtis.jsp"> <button class="btn btn-default" >Artista</button></a>
+          </div>
+          <div class="col-xs-4">
+           <a href="loginAdmin.jsp"> <button class="btn btn-danger" >Administrador</button></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-4">
+      </div>
+    </div>
   </body>
 </html>

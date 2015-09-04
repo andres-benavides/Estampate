@@ -1,5 +1,5 @@
 package com.estampate.corteI.hibernate;
-// Generated 2/09/2015 10:57:56 PM by Hibernate Tools 4.3.1
+// Generated 3/09/2015 11:13:42 PM by Hibernate Tools 4.3.1
 
 
 

@@ -1,5 +1,5 @@
 package com.estampate.corteI.hibernate;
-// Generated 2/09/2015 10:57:56 PM by Hibernate Tools 4.3.1
+// Generated 3/09/2015 11:13:42 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -16,21 +16,21 @@ public class Factura  implements java.io.Serializable {
      private FacturaDetalle facturaDetalle;
      private FormaPago formaPago;
      private String fecha;
-     private int precioTotal;
+     private String precioTotal;
      private Set<FacturaDetalle> facturaDetalles = new HashSet<FacturaDetalle>(0);
 
     public Factura() {
     }
 
 	
-    public Factura(Comprador comprador, FacturaDetalle facturaDetalle, FormaPago formaPago, String fecha, int precioTotal) {
+    public Factura(Comprador comprador, FacturaDetalle facturaDetalle, FormaPago formaPago, String fecha, String precioTotal) {
         this.comprador = comprador;
         this.facturaDetalle = facturaDetalle;
         this.formaPago = formaPago;
         this.fecha = fecha;
         this.precioTotal = precioTotal;
     }
-    public Factura(Comprador comprador, FacturaDetalle facturaDetalle, FormaPago formaPago, String fecha, int precioTotal, Set<FacturaDetalle> facturaDetalles) {
+    public Factura(Comprador comprador, FacturaDetalle facturaDetalle, FormaPago formaPago, String fecha, String precioTotal, Set<FacturaDetalle> facturaDetalles) {
        this.comprador = comprador;
        this.facturaDetalle = facturaDetalle;
        this.formaPago = formaPago;
@@ -74,11 +74,11 @@ public class Factura  implements java.io.Serializable {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
-    public int getPrecioTotal() {
+    public String getPrecioTotal() {
         return this.precioTotal;
     }
     
-    public void setPrecioTotal(int precioTotal) {
+    public void setPrecioTotal(String precioTotal) {
         this.precioTotal = precioTotal;
     }
     public Set<FacturaDetalle> getFacturaDetalles() {

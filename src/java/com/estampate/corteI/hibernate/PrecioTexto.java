@@ -1,5 +1,5 @@
 package com.estampate.corteI.hibernate;
-// Generated 2/09/2015 10:57:56 PM by Hibernate Tools 4.3.1
+// Generated 3/09/2015 11:13:42 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,7 +12,7 @@ public class PrecioTexto  implements java.io.Serializable {
 
 
      private Integer idPrecioTexto;
-     private int precio;
+     private String precio;
      private Set<FacturaDetalle> facturaDetalles = new HashSet<FacturaDetalle>(0);
      private Set<TamanoTexto> tamanoTextos = new HashSet<TamanoTexto>(0);
 
@@ -20,10 +20,10 @@ public class PrecioTexto  implements java.io.Serializable {
     }
 
 	
-    public PrecioTexto(int precio) {
+    public PrecioTexto(String precio) {
         this.precio = precio;
     }
-    public PrecioTexto(int precio, Set<FacturaDetalle> facturaDetalles, Set<TamanoTexto> tamanoTextos) {
+    public PrecioTexto(String precio, Set<FacturaDetalle> facturaDetalles, Set<TamanoTexto> tamanoTextos) {
        this.precio = precio;
        this.facturaDetalles = facturaDetalles;
        this.tamanoTextos = tamanoTextos;
@@ -36,11 +36,11 @@ public class PrecioTexto  implements java.io.Serializable {
     public void setIdPrecioTexto(Integer idPrecioTexto) {
         this.idPrecioTexto = idPrecioTexto;
     }
-    public int getPrecio() {
+    public String getPrecio() {
         return this.precio;
     }
     
-    public void setPrecio(int precio) {
+    public void setPrecio(String precio) {
         this.precio = precio;
     }
     public Set<FacturaDetalle> getFacturaDetalles() {

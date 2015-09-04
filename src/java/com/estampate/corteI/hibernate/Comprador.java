@@ -1,5 +1,5 @@
 package com.estampate.corteI.hibernate;
-// Generated 2/09/2015 10:57:56 PM by Hibernate Tools 4.3.1
+// Generated 3/09/2015 11:13:42 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -15,8 +15,8 @@ public class Comprador  implements java.io.Serializable {
      private String nombre;
      private String apellido;
      private String direccion;
-     private Integer cedula;
-     private Integer celular;
+     private String cedula;
+     private String celular;
      private String usuario;
      private String password;
      private Set<Factura> facturas = new HashSet<Factura>(0);
@@ -24,7 +24,7 @@ public class Comprador  implements java.io.Serializable {
     public Comprador() {
     }
 
-    public Comprador(String nombre, String apellido, String direccion, Integer cedula, Integer celular, String usuario, String password, Set<Factura> facturas) {
+    public Comprador(String nombre, String apellido, String direccion, String cedula, String celular, String usuario, String password, Set<Factura> facturas) {
        this.nombre = nombre;
        this.apellido = apellido;
        this.direccion = direccion;
@@ -63,18 +63,18 @@ public class Comprador  implements java.io.Serializable {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-    public Integer getCedula() {
+    public String getCedula() {
         return this.cedula;
     }
     
-    public void setCedula(Integer cedula) {
+    public void setCedula(String cedula) {
         this.cedula = cedula;
     }
-    public Integer getCelular() {
+    public String getCelular() {
         return this.celular;
     }
     
-    public void setCelular(Integer celular) {
+    public void setCelular(String celular) {
         this.celular = celular;
     }
     public String getUsuario() {

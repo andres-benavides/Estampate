@@ -5,6 +5,7 @@
  */
 package com.estampate.corteI.DAO;
 
+import com.estampate.corteI.hibernate.Artista;
 import com.estampate.corteI.hibernate.Comprador;
 import com.estampate.corteI.hibernate.HibernateUtil;
 import org.hibernate.Session;
@@ -21,22 +22,37 @@ public class guardarRegistroDAO {
     this.session = HibernateUtil.getSessionFactory().getCurrentSession();
   }
 
-  public void guardar(String nombre, String apellido, String direccion, int cedula, int celular, String usuario, String password) {
+  public void guardar(String nombre, String apellido, String direccion, String cedula, String celular, String usuario, String password, String tipo) {
     session.beginTransaction();
-    Comprador com = new Comprador();
-    com.setNombre(nombre);
-    com.setApellido(apellido);
-    com.setDireccion(direccion);
-    com.setCedula(cedula);
-    com.setCelular(celular);
-    com.setUsuario(usuario);
-    com.setPassword(password);
+    if (tipo.equals("C")) {
+      Comprador com = new Comprador();
+      com.setNombre(nombre);
+      com.setApellido(apellido);
+      com.setDireccion(direccion);
+      com.setCedula(cedula);
+      com.setCelular(celular);
+      com.setUsuario(usuario);
+      com.setPassword(password);
+      //Guardar el comprador
+      session.save(com);
 
-    //Guardar el comprador
-    session.save(com);
+      //Commit the transaction
+      session.getTransaction().commit();
+    } else if(tipo.equals("A")) {
+      Artista art = new Artista();
+      art.setNombre(nombre);
+      art.setApellido(apellido);
+      art.setDireccion(direccion);
+      art.setCedula(cedula);
+      art.setCelular(celular);
+      art.setUsuario(usuario);
+      art.setPassword(password);
+      //Guardar el Artista
+      session.save(art);
+      //Commit the transaction
+      session.getTransaction().commit();
+    }
 
-    //Commit the transaction
-    session.getTransaction().commit();
   }
 
 }

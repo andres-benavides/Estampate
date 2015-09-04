@@ -1,5 +1,5 @@
 package com.estampate.corteI.hibernate;
-// Generated 2/09/2015 10:57:56 PM by Hibernate Tools 4.3.1
+// Generated 3/09/2015 11:13:42 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -29,14 +29,14 @@ public class FacturaDetalle  implements java.io.Serializable {
      private TemaEstampa temaEstampa;
      private TextoCamiseta textoCamiseta;
      private String fecha;
-     private int precioTotal;
+     private String precioTotal;
      private Set<Factura> facturas = new HashSet<Factura>(0);
 
     public FacturaDetalle() {
     }
 
 	
-    public FacturaDetalle(Camiseta camiseta, ColorCamiseta colorCamiseta, EstampaCamiseta estampaCamiseta, Factura factura, FormaPago formaPago, LugarEstampaCamiseta lugarEstampaCamiseta, MaterialCamiseta materialCamiseta, PrecioCamiseta precioCamiseta, PrecioEstampa precioEstampa, PrecioTexto precioTexto, Stock stock, TallaCamiseta tallaCamiseta, TamanoEstampa tamanoEstampa, TamanoTexto tamanoTexto, TemaEstampa temaEstampa, TextoCamiseta textoCamiseta, String fecha, int precioTotal) {
+    public FacturaDetalle(Camiseta camiseta, ColorCamiseta colorCamiseta, EstampaCamiseta estampaCamiseta, Factura factura, FormaPago formaPago, LugarEstampaCamiseta lugarEstampaCamiseta, MaterialCamiseta materialCamiseta, PrecioCamiseta precioCamiseta, PrecioEstampa precioEstampa, PrecioTexto precioTexto, Stock stock, TallaCamiseta tallaCamiseta, TamanoEstampa tamanoEstampa, TamanoTexto tamanoTexto, TemaEstampa temaEstampa, TextoCamiseta textoCamiseta, String fecha, String precioTotal) {
         this.camiseta = camiseta;
         this.colorCamiseta = colorCamiseta;
         this.estampaCamiseta = estampaCamiseta;
@@ -56,7 +56,7 @@ public class FacturaDetalle  implements java.io.Serializable {
         this.fecha = fecha;
         this.precioTotal = precioTotal;
     }
-    public FacturaDetalle(Camiseta camiseta, ColorCamiseta colorCamiseta, EstampaCamiseta estampaCamiseta, Factura factura, FormaPago formaPago, LugarEstampaCamiseta lugarEstampaCamiseta, MaterialCamiseta materialCamiseta, PrecioCamiseta precioCamiseta, PrecioEstampa precioEstampa, PrecioTexto precioTexto, Stock stock, TallaCamiseta tallaCamiseta, TamanoEstampa tamanoEstampa, TamanoTexto tamanoTexto, TemaEstampa temaEstampa, TextoCamiseta textoCamiseta, String fecha, int precioTotal, Set<Factura> facturas) {
+    public FacturaDetalle(Camiseta camiseta, ColorCamiseta colorCamiseta, EstampaCamiseta estampaCamiseta, Factura factura, FormaPago formaPago, LugarEstampaCamiseta lugarEstampaCamiseta, MaterialCamiseta materialCamiseta, PrecioCamiseta precioCamiseta, PrecioEstampa precioEstampa, PrecioTexto precioTexto, Stock stock, TallaCamiseta tallaCamiseta, TamanoEstampa tamanoEstampa, TamanoTexto tamanoTexto, TemaEstampa temaEstampa, TextoCamiseta textoCamiseta, String fecha, String precioTotal, Set<Factura> facturas) {
        this.camiseta = camiseta;
        this.colorCamiseta = colorCamiseta;
        this.estampaCamiseta = estampaCamiseta;
@@ -204,11 +204,11 @@ public class FacturaDetalle  implements java.io.Serializable {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
-    public int getPrecioTotal() {
+    public String getPrecioTotal() {
         return this.precioTotal;
     }
     
-    public void setPrecioTotal(int precioTotal) {
+    public void setPrecioTotal(String precioTotal) {
         this.precioTotal = precioTotal;
     }
     public Set<Factura> getFacturas() {
