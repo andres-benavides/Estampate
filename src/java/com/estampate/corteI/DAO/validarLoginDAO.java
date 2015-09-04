@@ -26,7 +26,7 @@ public class validarLoginDAO {
     this.session = HibernateUtil.getSessionFactory().getCurrentSession();
   }
 
-  public List<Artista> getArtista(String usario,String password) {
+  public List<Artista> getArtista(String usario, String password) {
     List<Artista> misPersonas = new ArrayList<Artista>();
 //    try {
 //      
@@ -35,11 +35,11 @@ public class validarLoginDAO {
 //      misPersonas.add(null);
 //    }
     tx = session.beginTransaction();
-      String hql = "from artista where usuario = 'perro'";
-      Query q = session.createQuery(hql);
+    String hql = "from artista where usuario = 'perro'";
+    Query q = session.createQuery(hql);
 //      q.setParameter("usuario",usario);
 //      q.setParameter("password",password);
-      misPersonas=q.list();
+    misPersonas = q.list();
     return misPersonas;
   }
 
