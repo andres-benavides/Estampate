@@ -9,6 +9,7 @@ import com.estampate.corteI.hibernate.Artista;
 import com.estampate.corteI.hibernate.Comprador;
 import com.estampate.corteI.hibernate.HibernateUtil;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -17,42 +18,59 @@ import org.hibernate.Session;
 public class guardarRegistroDAO {
 
   Session session = null;
+  Transaction tx = null;
 
   public guardarRegistroDAO() {
     this.session = HibernateUtil.getSessionFactory().getCurrentSession();
   }
 
   public void guardar(String nombre, String apellido, String direccion, String cedula, String celular, String usuario, String password, String tipo) {
-    session.beginTransaction();
-    if (tipo.equals("C")) {
-      Comprador com = new Comprador();
-      com.setNombre(nombre);
-      com.setApellido(apellido);
-      com.setDireccion(direccion);
-      com.setCedula(cedula);
-      com.setCelular(celular);
-      com.setUsuario(usuario);
-      com.setPassword(password);
-      //Guardar el comprador
-      session.save(com);
+    
 
-      //Commit the transaction
-      session.getTransaction().commit();
-    } else if(tipo.equals("A")) {
-      Artista art = new Artista();
-      art.setNombre(nombre);
-      art.setApellido(apellido);
-      art.setDireccion(direccion);
-      art.setCedula(cedula);
-      art.setCelular(celular);
-      art.setUsuario(usuario);
-      art.setPassword(password);
-      //Guardar el Artista
-      session.save(art);
-      //Commit the transaction
-      session.getTransaction().commit();
+    try {
+      tx = session.beginTransaction();
+      if (tipo.equals("C")) {
+        Comprador com = new Comprador();
+        com.setNombre(nombre);
+        com.setApellido(apellido);
+        com.setDireccion(direccion);
+        com.setCedula(cedula);
+        com.setCelular(celular);
+        com.setUsuario(usuario);
+        com.setPassword(password);
+        //Guardar el comprador
+        session.save(com);
+        //Commit the transaction
+        session.getTransaction().commit();
+
+      } else if (tipo.equals("A")) {
+        Artista art = new Artista();
+        art.setNombre(nombre);
+        art.setApellido(apellido);
+        art.setDireccion(direccion);
+        art.setCedula(cedula);
+        art.setCelular(celular);
+        art.setUsuario(usuario);
+        art.setPassword(password);
+        //Guardar el Artista
+        session.save(art);
+        //Commit the transaction
+        session.getTransaction().commit();
+
+      }
+    } catch (RuntimeException e) {
+      try {
+        tx.rollback();
+      } catch (RuntimeException rbe) {
+        //log.error("Couldn’t roll back transaction", rbe);
+      }
+      throw e;
+    } finally {
+      if (session != null) {
+       // session.close();
+      }
+
     }
-
   }
 
 }

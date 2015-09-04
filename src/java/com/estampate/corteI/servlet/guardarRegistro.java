@@ -36,15 +36,8 @@ public class guardarRegistro extends HttpServlet {
     PrintWriter out = response.getWriter();
     try {
       /* TODO output your page here. You may use following sample code. */
-      out.println("<!DOCTYPE html>");
-      out.println("<html>");
-      out.println("<head>");
-      out.println("<title>Servlet guardarRegistro</title>");      
-      out.println("</head>");
-      out.println("<body>");
-      out.println("<h1>Servlet guardarRegistro at " + request.getContextPath() + "</h1>");
-      out.println("</body>");
-      out.println("</html>");
+     request.setAttribute("resultado", "ok");
+     request.getRequestDispatcher("index.jsp").forward(request, response);
     } finally {
       out.close();
     }

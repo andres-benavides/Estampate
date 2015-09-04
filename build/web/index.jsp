@@ -20,6 +20,13 @@
         color: black;
       }
     </style>
+    <%
+      String resultado = (String) request.getAttribute("resultado");
+      if (resultado!=null) {
+        out.println("<script>alert('Registro Guardado con exito');</script>)");
+      }
+            //out.println(resultado);
+%>
   </head>
   <body>
     <nav class="navbar navbar-default">
@@ -38,10 +45,10 @@
             <a href="loginUser.jsp"><button class="btn btn-primary" >Comprador</button></a>
           </div>
           <div class="col-xs-4">
-           <a href="loginArtis.jsp"> <button class="btn btn-default" >Artista</button></a>
+            <a href="loginArtis.jsp"> <button class="btn btn-default" >Artista</button></a>
           </div>
           <div class="col-xs-4">
-           <a href="loginAdmin.jsp"> <button class="btn btn-danger" >Administrador</button></a>
+            <a href="loginAdmin.jsp"> <button class="btn btn-danger" >Administrador</button></a>
           </div>
         </div>
       </div>
