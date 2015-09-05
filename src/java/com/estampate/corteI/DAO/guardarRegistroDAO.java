@@ -17,18 +17,16 @@ import org.hibernate.Transaction;
  */
 public class guardarRegistroDAO {
 
-  Session session = null;
-  Transaction tx = null;
+  private Session session = null;
+  private Transaction tx = null;
 
   public guardarRegistroDAO() {
     this.session = HibernateUtil.getSessionFactory().getCurrentSession();
   }
 
   public void guardar(String nombre, String apellido, String direccion, String cedula, String celular, String usuario, String password, String tipo) {
-    
-
     try {
-      tx = session.beginTransaction();
+      this.tx = this.session.beginTransaction();
       if (tipo.equals("C")) {
         Comprador com = new Comprador();
         com.setNombre(nombre);
@@ -39,9 +37,9 @@ public class guardarRegistroDAO {
         com.setUsuario(usuario);
         com.setPassword(password);
         //Guardar el comprador
-        session.save(com);
+        this.session.save(com);
         //Commit the transaction
-        session.getTransaction().commit();
+        this.session.getTransaction().commit();
 
       } else if (tipo.equals("A")) {
         Artista art = new Artista();
@@ -67,7 +65,6 @@ public class guardarRegistroDAO {
       throw e;
     } finally {
       if (session != null) {
-       // session.close();
       }
 
     }

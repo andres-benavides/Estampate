@@ -22,11 +22,14 @@
     </style>
     <%
       String resultado = (String) request.getAttribute("resultado");
-      if (resultado!=null) {
-        out.println("<script>alert('Registro Guardado con exito');</script>)");
+      if (resultado == "ok") {
+        out.println("<script>alert('Registro Guardado con exito');</script>");
+      } else if (resultado == "registrado") {
+        out.println("<script>alert('El nombre de usuario ya esta registrado');</script>");
+
       }
-            //out.println(resultado);
-%>
+      //out.println(resultado);
+    %>
   </head>
   <body>
     <nav class="navbar navbar-default">

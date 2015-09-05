@@ -6,6 +6,7 @@
 package com.estampate.corteI.servlet;
 
 import com.estampate.corteI.DAO.guardarRegistroDAO;
+import com.estampate.corteI.DAO.validarLoginDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -21,6 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "guardarRegistro", urlPatterns = {"/guardarRegistro"})
 public class guardarRegistro extends HttpServlet {
 
+  private boolean registrado = false;
+
   /**
    * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
    * methods.
@@ -35,9 +38,16 @@ public class guardarRegistro extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     try {
-      /* TODO output your page here. You may use following sample code. */
-     request.setAttribute("resultado", "ok");
-     request.getRequestDispatcher("index.jsp").forward(request, response);
+      /* SI EL USUARIO YA ESSTA REGISTRADO DEVUELVO "registrado" SI EL REGISTRO SE HIZO 
+       *  CORRECTAMENTE DEVUELVO "ok"
+       */
+      if (!registrado) {
+        request.setAttribute("resultado", "ok");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+      } else {
+        request.setAttribute("resultado", "registrado");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+      }
     } finally {
       out.close();
     }
@@ -69,8 +79,9 @@ public class guardarRegistro extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    guardarRegistroDAO registro = new guardarRegistroDAO();
+    //RESIBO EL TIPO PARA SABER SI ES REGISTRO DE ARTISTA "A" O DE COMPRADOR "C"
     String tipo = request.getParameter("tipo");
+    //HAGO EL REQUEST DE LOS CAMPOS DEL FORMULARIO
     String nombre = request.getParameter("nombre");
     String apellido = request.getParameter("apellido");
     String direccion = request.getParameter("direccion");
@@ -78,7 +89,20 @@ public class guardarRegistro extends HttpServlet {
     String celular = (request.getParameter("celular"));
     String usuario = request.getParameter("usuario");
     String password = request.getParameter("password");
-    registro.guardar(nombre, apellido, direccion, cedula, celular, usuario, password,tipo);
+
+    //CREO EL DAO QUE ME VALIDA SI EL USUARIO YA ESTA REGISTRADO
+    validarLoginDAO validaUser = new validarLoginDAO();
+    if (tipo.equals("C")) {
+      registrado = validaUser.userRegistrado(usuario, "Comprador");
+    } else if (tipo.equals("A")) {
+      registrado = validaUser.userRegistrado(usuario, "Artista");
+    }
+    //CREO EL DAO PARA GUARDAR UN USUARIO O UN ARTISTA SEGUN EL "tipo"
+    guardarRegistroDAO registro = new guardarRegistroDAO();
+    //SI EL USUARIO NO ESTA REGISTRADO GUARDO EL REGISTRO
+    if (!registrado) {
+      registro.guardar(nombre, apellido, direccion, cedula, celular, usuario, password, tipo);
+    }
     processRequest(request, response);
   }
 

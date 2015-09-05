@@ -5,6 +5,7 @@
  */
 package com.estampate.corteI.hibernate;
 
+import org.hibernate.Session;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
 
@@ -17,10 +18,10 @@ import org.hibernate.SessionFactory;
 public class HibernateUtil {
 
   private static final SessionFactory sessionFactory;
-  
+
   static {
     try {
-            // Create the SessionFactory from standard (hibernate.cfg.xml) 
+      // Create the SessionFactory from standard (hibernate.cfg.xml) 
       // config file.
       sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
     } catch (Throwable ex) {
@@ -29,8 +30,10 @@ public class HibernateUtil {
       throw new ExceptionInInitializerError(ex);
     }
   }
-  
+
   public static SessionFactory getSessionFactory() {
     return sessionFactory;
   }
+
+
 }
