@@ -7,6 +7,7 @@ package com.estampate.corteI.servlet;
 
 import com.estampate.corteI.DAO.validarLoginDAO;
 import com.estampate.corteI.hibernate.Artista;
+import com.estampate.corteI.hibernate.Comprador;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -24,8 +25,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "LogIn", urlPatterns = {"/LogIn"})
 public class LogIn extends HttpServlet {
 
-  private boolean ingreso;
+  private boolean ingresoArtista = false;
+  private boolean ingresoComprad = false;
   List<Artista> artista = new ArrayList<Artista>();
+  List<Comprador> comprador = new ArrayList();
+
   /**
    * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
    * methods.
@@ -41,38 +45,51 @@ public class LogIn extends HttpServlet {
     PrintWriter out = response.getWriter();
     try {
       /*
-      CREO UNA VARIABLE STRING (respuesta) EN LA CUAL VOY A DEVOLVER UN VALOR AL .JSP QUE VOY A CARGAR PARA VERLO EN EL NAVEGADOR
-      */
+       CREO UNA VARIABLE STRING (respuesta) EN LA CUAL VOY A DEVOLVER UN VALOR AL .JSP QUE VOY A CARGAR PARA VERLO EN EL NAVEGADOR
+       */
       String respuesta;
       /*
-      SI ingreso ES VERDADERO ES POR QUE LOS DATOS ESTAN BIEN ENTONCES DA LA BIENVENIDA SI NO ERROR EN LOS DATOS
-      */
-      
+       SI ingreso ES VERDADERO ES POR QUE LOS DATOS ESTAN BIEN ENTONCES DA LA BIENVENIDA SI NO ERROR EN LOS DATOS
+       */
+
       /*
-      LE DOY EL NOMBRE "resultado" Y EL VALOR DEL STRING respuesta A UNA VARIABLE QUE VOY A PODER USAR EN EL .jsp QUE VOY A CARGAR
-      */
+       LE DOY EL NOMBRE "resultado" Y EL VALOR DEL STRING respuesta A UNA VARIABLE QUE VOY A PODER USAR EN EL .jsp QUE VOY A CARGAR
+       */
      // request.setAttribute("resultado", artista);
       /*
-      POR ULTIMO LLAMO EL NUEVO .jsp PARA MOSTRAR LOS RESULTADOS DEL SERVLET. EL NUEVO .jsp QUE VOY A CARGAR SE LLAMA INICIO.
-      TAMBIEN LE ENVÍON LA VARIBLE resultado QUE ACABO DE CREAR
-      */
+       POR ULTIMO LLAMO EL NUEVO .jsp PARA MOSTRAR LOS RESULTADOS DEL SERVLET. EL NUEVO .jsp QUE VOY A CARGAR SE LLAMA INICIO.
+       TAMBIEN LE ENVÍON LA VARIBLE resultado QUE ACABO DE CREAR
+       */
       //request.getRequestDispatcher("inicio.jsp").forward(request, response);
-       out.println("<!DOCTYPE html>");
+      out.println("<!DOCTYPE html>");
       out.println("<html>");
       out.println("<head>");
-      out.println("<title>Servlet ServletPrueba</title>");      
+      out.println("<title>Servlet ServletPrueba</title>");
       out.println("</head>");
       out.println("<body>");
       //out.println("<h1>El nombre que ingreo es: Hago for</h1>");
-      
-      if(ingreso){
-        for(Artista ar:artista){
-         out.println("<h1> Bienvenido: "+ar.getUsuario()+"</h1>");
+
+      if (ingresoArtista) {
+        if (artista.size() > 0) {
+          for (Artista ar : artista) {
+            
+            
+            request.getRequestDispatcher("artista/index.jsp").forward(request, response);
+          }
+        } else {
+          out.println("<h1>Usuario no registrado</h1>");
+        }
+      } else if (ingresoComprad) {
+        if (comprador.size() > 0) {
+          for (Comprador ar : comprador) {
+            request.getRequestDispatcher("artista/index.jsp").forward(request, response);
+            out.println("<h1> Bienvenido Comprador: " + ar.getUsuario() + "</h1>");
+          }
+        } else {
+          out.println("<h1>Usuario no registrado</h1>");
+        }
       }
-      }else{
-        out.println("<h1>Usuario no registrado</h1>");
-      }
-      
+
       out.println("</body>");
       out.println("</html>");
     } finally {
@@ -107,18 +124,23 @@ public class LogIn extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     /*
-    RECIBO LOS PARAMETROS QUE VIENEN DEL FORMULARIO PARA HACER LA VALIDACION
-    */
-     
+     RECIBO LOS PARAMETROS QUE VIENEN DEL FORMULARIO PARA HACER LA VALIDACION
+     */
+    String tipo = request.getParameter("tipo");
     String user = request.getParameter("user");
     String passwrd = request.getParameter("passwrd");
     validarLoginDAO valid = new validarLoginDAO();
-    artista = valid.getArtista(user, passwrd);
-    ingreso = artista.size()>0;
+    if (tipo.equals("C")) {
+      ingresoComprad = true;
+      comprador = valid.getComprador(user, passwrd);
+    } else if (tipo.equals("A")) {
+      ingresoArtista = true;
+      artista = valid.getArtista(user, passwrd);
+    }
     /*
-    ACA LE DIGO QUE SI EL CAMPO USUARIO DEL FORMULARIO ES IGUAL A ADMIN Y EL CAMPO PASSWRD ES IGUAL A 123 LA VARIABLE
-    ingreso VA HACER VERDADERA
-    */
+     ACA LE DIGO QUE SI EL CAMPO USUARIO DEL FORMULARIO ES IGUAL A ADMIN Y EL CAMPO PASSWRD ES IGUAL A 123 LA VARIABLE
+     ingreso VA HACER VERDADERA
+     */
     processRequest(request, response);
   }
 

@@ -31,45 +31,35 @@ public class validarLoginDAO {
   BUSCO EL USUARIO QUE SE ESTA LOGEANDO Y LO DEVUELVO
   */
   public List<Artista> getArtista(String usario, String password) {
-    List<Artista> misPersonas = new ArrayList<Artista>();
+    List<Artista> artista = new ArrayList<Artista>();
     try {
       tx = session.beginTransaction();
       String hql = "from Artista where usuario = :usuario AND password = :password";
       Query q = session.createQuery(hql);
       q.setParameter("usuario", usario);
       q.setParameter("password", password);
-      misPersonas = (List<Artista>) q.list();
+      artista = (List<Artista>) q.list();
     } catch (Exception e) {
       e.printStackTrace();
-    } finally {
-      if (session != null) {
-       // session.close();
-      }
-
-    }
-    return misPersonas;
+    } 
+    return artista;
   }
   /*
   BUSCO EL COMPRADOR QUE SE ESTA LOGEANDO Y LO DEVUELVO
   */
   public List<Comprador> getComprador(String usario, String password) {
-    List<Comprador> misPersonas = new ArrayList();
+    List<Comprador> comprador = new ArrayList();
     try {
       tx = session.beginTransaction();
-      String hql = "from Artista where usuario = :usuario AND password = :password";
+      String hql = "from Comprador where usuario = :usuario AND password = :password";
       Query q = session.createQuery(hql);
       q.setParameter("usuario", usario);
       q.setParameter("password", password);
-      misPersonas = (List<Comprador>) q.list();
+      comprador = (List<Comprador>) q.list();
     } catch (Exception e) {
       e.printStackTrace();
-    } finally {
-      if (session != null) {
-       // session.close();
-      }
-
-    }
-    return misPersonas;
+    } 
+    return comprador;
   }
 
   public boolean userRegistrado(String usario, String tabla) {
