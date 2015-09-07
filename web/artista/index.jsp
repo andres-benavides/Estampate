@@ -10,9 +10,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!--LLAMOloooo LOS SCRIPT DE JS QUE NECESITO EN ESTE CASO FUNCIONES Y LA LIBRERIA DE JQUERY-->
-    <script type="text/javascript" src="../js/libs/jquery.js"></script>
-    <script type="text/javascript" src="../js/funciones.js"></script>
-    <link rel="stylesheet" href="../js/libs/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+    <script type="text/javascript" src="js/libs/jquery.js"></script>
+    <script type="text/javascript" src="js/funciones.js"></script>
+    <link rel="stylesheet" href="js/libs/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
     <title>Estampate!!!!</title>
     <style type="text/css">
       li:hover{
@@ -33,7 +33,7 @@
         <div class="collapse navbar-collapse" >
           <button type="button" class="btn btn-default navbar-btn" id="btnSession">Cerrar Sesion</button>
           <ul class="nav navbar-nav">
-            <li><a href="administrarEstampa.jsp">Administrar Estampas</a></li>
+            <li><a href="artista/administrarEstampa.jsp">Administrar Estampas</a></li>
             <li><a href="#">Generar Reportes</a></li>
             <li><a href="#">Modificar Perfil</a></li>
           </ul>

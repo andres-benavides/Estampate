@@ -7,6 +7,7 @@ package com.estampate.corteI.DAO;
 
 import com.estampate.corteI.hibernate.Artista;
 import com.estampate.corteI.hibernate.Comprador;
+import com.estampate.corteI.hibernate.EstampaCamiseta;
 import com.estampate.corteI.hibernate.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -63,11 +64,15 @@ public class guardarRegistroDAO {
         //log.error("Couldn’t roll back transaction", rbe);
       }
       throw e;
-    } finally {
-      if (session != null) {
-      }
+    } 
+  }
 
-    }
+  public void guardaEstampa(EstampaCamiseta estampa) {
+    this.tx = this.session.beginTransaction();
+    //Guardar la estampa
+    this.session.save(estampa);
+    //Commit the transaction
+    this.session.getTransaction().commit();
   }
 
 }

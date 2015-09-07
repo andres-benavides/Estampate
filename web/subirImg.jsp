@@ -11,6 +11,7 @@
     <title>File Uploading Form</title>
   </head>
   <body>
+    <img src="estampas/pcPila.jpg" alt="" width="400px" height="400px" />
     <h3>File Upload:</h3>
     Select a file to upload: <br />
     <form action="servlets" method="post"

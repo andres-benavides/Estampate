@@ -4,6 +4,10 @@
     <servlet-name>servlets</servlet-name>
     <servlet-class>com.estampate.corteI.servlet.servlets</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>guardarEstampa</servlet-name>
+    <servlet-class>com.estampate.corteI.servlet.guardarEstampa</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>servlets</servlet-name>
     <url-pattern>/servlets</url-pattern>
@@ -16,7 +20,10 @@
     <param-name>maxFileSize</param-name>
     <param-value>3000000</param-value>
   </context-param>
-
+  <servlet-mapping>
+    <servlet-name>guardarEstampa</servlet-name>
+    <url-pattern>/guardarEstampa</url-pattern>
+  </servlet-mapping>
   <session-config>
     <session-timeout>
       30
@@ -29,7 +36,7 @@
     <description>Location to store uploaded file</description>
     <param-name>file-upload</param-name>
     <param-value>
-      C:\estampate\estampas
+      \estampas
     </param-value>
   </context-param>
 </web-app>

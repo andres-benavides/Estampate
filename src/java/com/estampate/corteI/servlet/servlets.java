@@ -66,7 +66,7 @@ public class servlets extends HttpServlet {
               sesion.setAttribute("sArTipo", String.valueOf(tipo));
               sesion.setAttribute("sArExtension", String.valueOf(extension));
 
-              File archivo = new File(dirUploadFiles, nombre);
+              File archivo = new File(dirUploadFiles, "nombreRequest"+extension);
               item.write(archivo);
               if (archivo.exists()) {
                 response.sendRedirect("uploadsave.jsp");

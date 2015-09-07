@@ -8,6 +8,7 @@ package com.estampate.corteI.servlet;
 import com.estampate.corteI.DAO.validarLoginDAO;
 import com.estampate.corteI.hibernate.Artista;
 import com.estampate.corteI.hibernate.Comprador;
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -29,6 +31,7 @@ public class LogIn extends HttpServlet {
   private boolean ingresoComprad = false;
   List<Artista> artista = new ArrayList<Artista>();
   List<Comprador> comprador = new ArrayList();
+  
 
   /**
    * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,10 +47,7 @@ public class LogIn extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     try {
-      /*
-       CREO UNA VARIABLE STRING (respuesta) EN LA CUAL VOY A DEVOLVER UN VALOR AL .JSP QUE VOY A CARGAR PARA VERLO EN EL NAVEGADOR
-       */
-      String respuesta;
+      HttpSession objSesion = request.getSession(true); 
       /*
        SI ingreso ES VERDADERO ES POR QUE LOS DATOS ESTAN BIEN ENTONCES DA LA BIENVENIDA SI NO ERROR EN LOS DATOS
        */
@@ -61,19 +61,14 @@ public class LogIn extends HttpServlet {
        TAMBIEN LE ENVÍON LA VARIBLE resultado QUE ACABO DE CREAR
        */
       //request.getRequestDispatcher("inicio.jsp").forward(request, response);
-      out.println("<!DOCTYPE html>");
-      out.println("<html>");
-      out.println("<head>");
-      out.println("<title>Servlet ServletPrueba</title>");
-      out.println("</head>");
-      out.println("<body>");
       //out.println("<h1>El nombre que ingreo es: Hago for</h1>");
 
       if (ingresoArtista) {
         if (artista.size() > 0) {
           for (Artista ar : artista) {
-            
-            
+            int idUser = ar.getIdArtista(); //aqui tu identificador de usuario
+            String idString = Integer.toString(idUser);
+            objSesion.setAttribute("idUsuaio", idString );
             request.getRequestDispatcher("artista/index.jsp").forward(request, response);
           }
         } else {
@@ -82,7 +77,7 @@ public class LogIn extends HttpServlet {
       } else if (ingresoComprad) {
         if (comprador.size() > 0) {
           for (Comprador ar : comprador) {
-            request.getRequestDispatcher("artista/index.jsp").forward(request, response);
+            request.getRequestDispatcher("comprador/index.jsp").forward(request, response);
             out.println("<h1> Bienvenido Comprador: " + ar.getUsuario() + "</h1>");
           }
         } else {
