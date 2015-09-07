@@ -11,7 +11,7 @@
   int idArtista = Integer.parseInt(usuario);
   datosGeneralesDAO infoUser = new datosGeneralesDAO();
   Artista ar = infoUser.getArtista(idArtista);
-  out.print( ar.getNombre()+" "+idArtista);
+ // out.print( ar.getNombre()+" "+idArtista);
 //  for(Artista pe:ar){
 //    
 //  }
@@ -34,6 +34,7 @@
           <a class="navbar-brand" href="#">Estampate</a>
         </div>
         <div class="collapse navbar-collapse" >
+          <a href="index.jsp"><button type="button" class="btn btn-default navbar-btn" id="btnSession">Volver</button></a>
           <button type="button" class="btn btn-default navbar-btn" id="btnSession">Cerrar Sesion</button>
         </div>
       </div>
@@ -42,11 +43,13 @@
     <div class="container-fluid" id="registro" >
       <div class="row">
         <div class="col-lg-6 col-ms-6 col-xs-6">
-          <form class="form-horizontal" action="guardarRegistro" method="post" role="form"  >
+          <form class="form-horizontal" action="../guardarRegistro" method="post" role="form"  >
             <div class="form-group">
               <label class="col-lg-2 control-label"  class="col-lg-2 control-label" for="nombre">Nombre:</label>
               <div class="col-lg-7">
                 <input type="hidden" name="tipo" value="A" />
+                <input type="hidden" name="modifica" value="S" />
+                <input type="hidden" name="id" value="<%out.print(usuario);%>" />
                 <input type="text" name="nombre" id="nombre" value="<% out.print(ar.getNombre());%>" class="form-control" />
               </div>
             </div>
@@ -59,25 +62,25 @@
             <div class="form-group">
               <label class="col-lg-2 control-label"  for="direccion">Direccion:</label>
               <div class="col-lg-7">
-                <input type="text" name="direccion" id="direccion" class="form-control" />
+                <input type="text" name="direccion" value="<% out.print(ar.getDireccion());%>" id="direccion" class="form-control" />
               </div>
             </div>
             <div class="form-group">
               <label class="col-lg-2 control-label"  for="cedula">Cedula:</label>
               <div class="col-lg-7">
-                <input type="number" name="cedula" id="cedula" class="form-control" />
+                <input type="number" name="cedula" value="<% out.print(ar.getCedula());%>" id="cedula" class="form-control" />
               </div>
             </div>
             <div class="form-group">
               <label class="col-lg-2 control-label"  for="celular">Celular:</label>
               <div class="col-lg-7">
-                <input type="number" name="celular" id="celular" class="form-control" />
+                <input type="number" name="celular" value="<% out.print(ar.getCelular());%>" id="celular" class="form-control" />
               </div>
             </div>
             <div class="form-group">
               <label class="col-lg-2 control-label"  for="usuario">Usuario:</label>
               <div class="col-lg-7">
-                <input type="text" name="usuario" id="usuario" class="form-control" />
+                <input type="text" name="usuario" id="usuario" value="<% out.print(ar.getUsuario());%>" readonly class="form-control" />
               </div>
             </div>
             <div class="form-group">
@@ -88,7 +91,7 @@
             </div>
             <div class="form-group">
               <div class="col-lg-7">
-                <input type="submit" name="registrar" id="registrar" class="btn btn-success" />
+                <input type="submit" name="Modificar" id="registrar" class="btn btn-success" />
               </div>
             </div>
           </form>

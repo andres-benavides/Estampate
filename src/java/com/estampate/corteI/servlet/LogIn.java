@@ -69,7 +69,7 @@ public class LogIn extends HttpServlet {
             int idUser = ar.getIdArtista(); //aqui tu identificador de usuario
             String idString = Integer.toString(idUser);
             objSesion.setAttribute("idUsuaio", idString );
-            request.getRequestDispatcher("artista/index.jsp").forward(request, response);
+            response.sendRedirect("artista/index.jsp");
           }
         } else {
           out.println("<h1>Usuario no registrado</h1>");

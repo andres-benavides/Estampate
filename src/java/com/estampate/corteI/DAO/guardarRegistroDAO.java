@@ -41,8 +41,9 @@ public class guardarRegistroDAO {
         this.session.save(com);
         //Commit the transaction
         this.session.getTransaction().commit();
-        if (!tx.wasCommitted())
+        if (!tx.wasCommitted()) {
           tx.commit();
+        }
 
       } else if (tipo.equals("A")) {
         Artista art = new Artista();
@@ -57,8 +58,9 @@ public class guardarRegistroDAO {
         session.save(art);
         //Commit the transaction
         session.getTransaction().commit();
-        if (!tx.wasCommitted())
+        if (!tx.wasCommitted()) {
           tx.commit();
+        }
       }
     } catch (RuntimeException e) {
       try {
@@ -69,14 +71,40 @@ public class guardarRegistroDAO {
       throw e;
     }
   }
+  /*
+   GUARDO UNA ESTAMPA
+   */
 
   public void guardaEstampa(EstampaCamiseta estampa) {
-    
+
     session = HibernateUtil.getSessionFactory().getCurrentSession();
     tx = session.beginTransaction();
-//    //Guardar la estampa
+    //Guardar la estampa
     this.session.save(estampa);
-//    //Commit the transaction
+    //Commit the transaction
+    this.session.getTransaction().commit();
+  }
+
+  /*
+   ACTUALIZAR PERFIL DE ARTISTA
+   */
+  public void actualizaArtista(Artista artista) {
+    session = HibernateUtil.getSessionFactory().getCurrentSession();
+    tx = session.beginTransaction();
+    //Guardar la estampa
+    this.session.update(artista);
+    //Commit the transaction
+    this.session.getTransaction().commit();
+  }
+   /*
+   ACTUALIZAR PERFIL DE COMPRADOR
+   */
+  public void actualizaComprador(Comprador comprador) {
+    session = HibernateUtil.getSessionFactory().getCurrentSession();
+    tx = session.beginTransaction();
+    //Guardar la estampa
+    this.session.update(comprador);
+    //Commit the transaction
     this.session.getTransaction().commit();
   }
 

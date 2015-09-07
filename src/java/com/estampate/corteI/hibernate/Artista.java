@@ -34,6 +34,15 @@ public class Artista  implements java.io.Serializable {
        this.password = password;
        this.estampaCamisetas = estampaCamisetas;
     }
+     public Artista(String nombre, String apellido, String direccion, String cedula, String celular, String usuario, String password) {
+       this.nombre = nombre;
+       this.apellido = apellido;
+       this.direccion = direccion;
+       this.cedula = cedula;
+       this.celular = celular;
+       this.usuario = usuario;
+       this.password = password;
+    }
    
     public Integer getIdArtista() {
         return this.idArtista;

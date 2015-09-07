@@ -24,16 +24,25 @@
   datosGeneralesDAO estampasImg = new datosGeneralesDAO();
   List<EstampaCamiseta> estampa = new ArrayList<EstampaCamiseta>();
   estampa = estampasImg.getEstampas(ar);
-
+  
+  String deServlet = (String) objSesion.getAttribute("servlet");
+  boolean servlet;
+  servlet = deServlet!=null;
+  if(servlet){
+    out.println("<script>alert('Estampa Guardada con exito');</script>");
+    objSesion.setAttribute("servlet",null);
+  }
 %>
 <!DOCTYPE html>
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!--LLAMOloooo LOS SCRIPT DE JS QUE NECESITO EN ESTE CASO FUNCIONES Y LA LIBRERIA DE JQUERY-->
-    <script type="text/javascript" src="../js/libs/jquery.js"></script>
-    <script type="text/javascript" src="../js/funciones.js"></script>
-    <link rel="stylesheet" href="../js/libs/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+    
+      <script type="text/javascript" src="../js/libs/jquery.js"></script>
+      <script type="text/javascript" src="../js/funciones.js"></script>
+      <link rel="stylesheet" href="../js/libs/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+  
     <title>Estampate!!!!</title>
     <style type="text/css">
       li:hover{
@@ -52,6 +61,25 @@
         float: left;
       }
     </style>
+    <script type="text/javascript">
+      $(document).ready(function (){
+          $("#btnVerCat").click(function (){
+            $("#adminDisenio").hide();
+            $("#subirEstampa").hide();
+            $("#verCatalogo").show();
+          });
+          $("#btnSubDis").click(function (){
+            $("#adminDisenio").hide();
+            $("#verCatalogo").hide();
+            $("#subirEstampa").show();
+          });
+          $("#btnAdmiDis").click(function (){
+            $("#adminDisenio").show();
+            $("#verCatalogo").hide();
+            $("#subirEstampa").hide();
+          });
+      });
+    </script>
   </head>
   <body>
     <nav class="navbar navbar-default">
@@ -60,7 +88,7 @@
           <a class="navbar-brand" href="#">Estampate</a>
         </div>
         <div class="collapse navbar-collapse" >
-          <button type="button" class="btn btn-default navbar-btn" id="btnSession">Volver</button>
+          <a href="index.jsp"><button type="button" class="btn btn-default navbar-btn" id="btnSession">Volver</button></a>
           <button type="button" class="btn btn-default navbar-btn" id="btnSession">Cerrar Sesion</button>
         </div>
       </div>
@@ -71,9 +99,9 @@
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
           <div class="row">
-            <div class="col-xs-4"><button type="button" class="btn btn-default navbar-btn" id="btnSession">Ver Catalogo</button></div>
-            <div class="col-xs-4"><button type="button" class="btn btn-default navbar-btn" id="btnSession">Subir nuevo diseño</button></div>
-            <div class="col-xs-4"><button type="button" class="btn btn-default navbar-btn" id="btnSession">Administrar Diseños</button></div>
+            <div class="col-xs-4"><button type="button" class="btn btn-default navbar-btn" id="btnVerCat">Ver Catalogo</button></div>
+            <div class="col-xs-4"><button type="button" class="btn btn-default navbar-btn" id="btnSubDis">Subir nuevo diseño</button></div>
+            <div class="col-xs-4"><button type="button" class="btn btn-default navbar-btn" id="btnAdmiDis">Administrar Diseños</button></div>
           </div>
         </div>
         <div class="col-xs-4"></div>
@@ -156,7 +184,7 @@
             </div>
           </form>
         </div>
-        <div class="col xs 8" id="verCatalogo">
+        <div class="col xs 8" id="verCatalogo" style="display:none">
           <%
             for (EstampaCamiseta est : estampa) {
               out.print("<div class='contenedor'>");

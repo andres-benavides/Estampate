@@ -5,8 +5,11 @@
  */
 package com.estampate.corteI.servlet;
 
+import com.estampate.corteI.DAO.datosGeneralesDAO;
 import com.estampate.corteI.DAO.guardarRegistroDAO;
 import com.estampate.corteI.DAO.validarLoginDAO;
+import com.estampate.corteI.hibernate.Artista;
+import com.estampate.corteI.hibernate.Comprador;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -41,12 +44,16 @@ public class guardarRegistro extends HttpServlet {
       /* SI EL USUARIO YA ESSTA REGISTRADO DEVUELVO "registrado" SI EL REGISTRO SE HIZO 
        *  CORRECTAMENTE DEVUELVO "ok"
        */
-      if (!registrado) {
-        request.setAttribute("resultado", "ok");
-        request.getRequestDispatcher("index.jsp").forward(request, response);
-      } else {
-        request.setAttribute("resultado", "registrado");
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+      if (request.getParameter("modifica") == null) {
+        if (!registrado) {
+          request.setAttribute("resultado", "ok");
+          request.getRequestDispatcher("index.jsp").forward(request, response);
+        } else {
+          request.setAttribute("resultado", "registrado");
+          request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
+      }else if (request.getParameter("modifica") != null) {
+        response.sendRedirect("artista/modificarPerfil.jsp");
       }
     } finally {
       out.close();
@@ -91,17 +98,38 @@ public class guardarRegistro extends HttpServlet {
     String password = request.getParameter("password");
 
     //CREO EL DAO QUE ME VALIDA SI EL USUARIO YA ESTA REGISTRADO
-    validarLoginDAO validaUser = new validarLoginDAO();
-    if (tipo.equals("C")) {
-      registrado = validaUser.userRegistrado(usuario, "Comprador");
-    } else if (tipo.equals("A")) {
-      registrado = validaUser.userRegistrado(usuario, "Artista");
-    }
-    //CREO EL DAO PARA GUARDAR UN USUARIO O UN ARTISTA SEGUN EL "tipo"
-    guardarRegistroDAO registro = new guardarRegistroDAO();
-    //SI EL USUARIO NO ESTA REGISTRADO GUARDO EL REGISTRO
-    if (!registrado) {
-      registro.guardar(nombre, apellido, direccion, cedula, celular, usuario, password, tipo);
+    if (request.getParameter("modifica") == null) {
+      validarLoginDAO validaUser = new validarLoginDAO();
+      if (tipo.equals("C")) {
+        registrado = validaUser.userRegistrado(usuario, "Comprador");
+      } else if (tipo.equals("A")) {
+        registrado = validaUser.userRegistrado(usuario, "Artista");
+      }
+      //CREO EL DAO PARA GUARDAR UN USUARIO O UN ARTISTA SEGUN EL "tipo"
+      guardarRegistroDAO registro = new guardarRegistroDAO();
+      //SI EL USUARIO NO ESTA REGISTRADO GUARDO EL REGISTRO
+      if (!registrado) {
+        registro.guardar(nombre, apellido, direccion, cedula, celular, usuario, password, tipo);
+      }
+    } else if (request.getParameter("modifica").equals("S")) {
+      guardarRegistroDAO registro = new guardarRegistroDAO();
+      if (tipo.equals("A")) {
+        //Artista artista = new Artista();
+        datosGeneralesDAO infoUser = new datosGeneralesDAO();
+        int id = Integer.parseInt(request.getParameter("id"));
+        Artista artista = infoUser.getArtista(id);
+        artista.setNombre(nombre);
+        artista.setApellido(apellido);
+        artista.setDireccion(direccion);
+        artista.setCedula(cedula);
+        artista.setCelular(celular);
+        artista.setUsuario(usuario);
+        artista.setPassword(password);
+        registro.actualizaArtista(artista);
+      } else if (tipo.equals("C")) {
+        Comprador comprador = new Comprador(nombre, apellido, direccion, cedula, celular, usuario, password, null);
+        registro.actualizaComprador(comprador);
+      }
     }
     processRequest(request, response);
   }

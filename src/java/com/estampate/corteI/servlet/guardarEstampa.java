@@ -55,9 +55,12 @@ public class guardarEstampa extends HttpServlet {
           throws ServletException, IOException {
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
-    out.print(campos.get(1));
+     HttpSession objSesion = request.getSession(true); 
     campos = new ArrayList<String>();
-
+    //request.setAttribute("servlet", "ok");
+    objSesion.setAttribute("servlet", "ok" );
+    //request.getRequestDispatcher("artista/administrarEstampa.jsp").forward(request, response);
+    response.sendRedirect("artista/administrarEstampa.jsp");
 //    out.print(subioImagen);
     out.close();
   }
