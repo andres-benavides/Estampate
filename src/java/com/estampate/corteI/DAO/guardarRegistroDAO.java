@@ -18,11 +18,11 @@ import org.hibernate.Transaction;
  */
 public class guardarRegistroDAO {
 
-  private Session session = null;
-  private Transaction tx = null;
+  Session session = null;
+  Transaction tx = null;
 
   public guardarRegistroDAO() {
-    this.session = HibernateUtil.getSessionFactory().getCurrentSession();
+    session = HibernateUtil.getSessionFactory().getCurrentSession();
   }
 
   public void guardar(String nombre, String apellido, String direccion, String cedula, String celular, String usuario, String password, String tipo) {
@@ -41,6 +41,8 @@ public class guardarRegistroDAO {
         this.session.save(com);
         //Commit the transaction
         this.session.getTransaction().commit();
+        if (!tx.wasCommitted())
+          tx.commit();
 
       } else if (tipo.equals("A")) {
         Artista art = new Artista();
@@ -55,7 +57,8 @@ public class guardarRegistroDAO {
         session.save(art);
         //Commit the transaction
         session.getTransaction().commit();
-
+        if (!tx.wasCommitted())
+          tx.commit();
       }
     } catch (RuntimeException e) {
       try {
@@ -64,15 +67,17 @@ public class guardarRegistroDAO {
         //log.error("Couldn’t roll back transaction", rbe);
       }
       throw e;
-    } 
+    }
   }
 
   public void guardaEstampa(EstampaCamiseta estampa) {
-    this.tx = this.session.beginTransaction();
-    //Guardar la estampa
-    this.session.save(estampa);
-    //Commit the transaction
-    this.session.getTransaction().commit();
+    
+    session = HibernateUtil.getSessionFactory().getCurrentSession();
+    tx = session.beginTransaction();
+//    //Guardar la estampa
+//    this.session.save(estampa);
+//    //Commit the transaction
+//    this.session.getTransaction().commit();
   }
 
 }

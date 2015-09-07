@@ -39,6 +39,7 @@ public class validarLoginDAO {
       q.setParameter("usuario", usario);
       q.setParameter("password", password);
       artista = (List<Artista>) q.list();
+      tx.commit();
     } catch (Exception e) {
       e.printStackTrace();
     } 
@@ -56,6 +57,7 @@ public class validarLoginDAO {
       q.setParameter("usuario", usario);
       q.setParameter("password", password);
       comprador = (List<Comprador>) q.list();
+      tx.commit();
     } catch (Exception e) {
       e.printStackTrace();
     } 

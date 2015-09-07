@@ -158,8 +158,8 @@ public class guardarEstampa extends HttpServlet {
     estampa.setPrecio(campos.get(3));
     //ASIGNO EL ID DEL LUGAR 
     estampa.setIdLugarEstampa(Integer.parseInt(campos.get(5)));
-    guardarRegistroDAO guardaEstampa = new guardarRegistroDAO();
-    guardaEstampa.guardaEstampa(estampa);
+    guardarRegistroDAO guardarEstampa = new guardarRegistroDAO();
+    guardarEstampa.guardaEstampa(estampa);
     processRequest(request, response);
   }
 

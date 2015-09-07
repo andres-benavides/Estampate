@@ -23,8 +23,8 @@ import org.hibernate.Transaction;
  */
 public class datosGeneralesDAO {
 
-  private Session session = null;
-  private Transaction tx = null;
+   Session session = null;
+   Transaction tx = null;
 
   public datosGeneralesDAO() {
     this.session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -92,7 +92,9 @@ public class datosGeneralesDAO {
       Query q = session.createQuery(hql);
       q.setParameter("idArtista", idArtista);
       artista = (Artista) q.list();
-      this.session.getTransaction().commit();
+      if (!tx.wasCommitted())
+        tx.commit();
+
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -110,7 +112,9 @@ public class datosGeneralesDAO {
       Query q = session.createQuery(hql);
       q.setParameter("id", id);
       lugar = (LugarEstampaCamiseta) q.list();
-      this.session.getTransaction().commit();
+      if (!tx.wasCommitted())
+        tx.commit();
+
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -128,7 +132,9 @@ public class datosGeneralesDAO {
       Query q = session.createQuery(hql);
       q.setParameter("id", id);
       tamano = (TamanoEstampa) q.list();
-      this.session.getTransaction().commit();
+      if (!tx.wasCommitted())
+        tx.commit();
+
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -146,7 +152,9 @@ public class datosGeneralesDAO {
       Query q = session.createQuery(hql);
       q.setParameter("id", id);
       tema = (TemaEstampa) q.list();
-      this.session.getTransaction().commit();
+      if (!tx.wasCommitted())
+        tx.commit();
+ 
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -164,7 +172,9 @@ public class datosGeneralesDAO {
       Query q = session.createQuery(hql);
       q.setParameter("id", id);
       rating = (RatingEstampa) q.list();
-      this.session.getTransaction().commit();
+      if (!tx.wasCommitted())
+        tx.commit();
+
     } catch (Exception e) {
       e.printStackTrace();
     }
