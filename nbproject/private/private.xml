@@ -3,15 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/AndresV/Documents/universidad%202015-II/arquitectura%20soft/Estampatee/src/java/com/estampate/corteI/DAO/validarLoginDAO.java</file>
+            <file>file:/C:/Users/AndresV/Documents/universidad%202015-II/arquitectura%20soft/Estampatee/web/artista/index.jsp</file>
             <file>file:/C:/Users/AndresV/Documents/universidad%202015-II/arquitectura%20soft/Estampatee/src/java/com/estampate/corteI/servlet/LogIn.java</file>
-            <file>file:/C:/Users/AndresV/Documents/universidad%202015-II/arquitectura%20soft/Estampatee/web/loginArtis.jsp</file>
-            <file>file:/C:/Users/AndresV/Documents/universidad%202015-II/arquitectura%20soft/Estampatee/src/java/com/estampate/corteI/hibernate/HibernateUtil.java</file>
+            <file>file:/C:/Users/AndresV/Documents/universidad%202015-II/arquitectura%20soft/Estampatee/src/java/com/estampate/corteI/servlet/servlets.java</file>
+            <file>file:/C:/Users/AndresV/Documents/universidad%202015-II/arquitectura%20soft/Estampatee/web/artista/administrarEstampa.jsp</file>
             <file>file:/C:/Users/AndresV/Documents/universidad%202015-II/arquitectura%20soft/Estampatee/src/java/com/estampate/corteI/servlet/guardarRegistro.java</file>
             <file>file:/C:/Users/AndresV/Documents/universidad%202015-II/arquitectura%20soft/Estampatee/web/index.jsp</file>
+            <file>file:/C:/Users/AndresV/Documents/universidad%202015-II/arquitectura%20soft/Estampatee/web/uploaderror.jsp</file>
             <file>file:/C:/Users/AndresV/Documents/universidad%202015-II/arquitectura%20soft/Estampatee/web/loginUser.jsp</file>
+            <file>file:/C:/Users/AndresV/Documents/universidad%202015-II/arquitectura%20soft/Estampatee/web/subirImg.jsp</file>
+            <file>file:/C:/Users/AndresV/Documents/universidad%202015-II/arquitectura%20soft/Estampatee/src/java/com/estampate/corteI/DAO/validarLoginDAO.java</file>
+            <file>file:/C:/Users/AndresV/Documents/universidad%202015-II/arquitectura%20soft/Estampatee/web/loginArtis.jsp</file>
+            <file>file:/C:/Users/AndresV/Documents/universidad%202015-II/arquitectura%20soft/Estampatee/src/java/com/estampate/corteI/hibernate/HibernateUtil.java</file>
             <file>file:/C:/Users/AndresV/Documents/universidad%202015-II/arquitectura%20soft/Estampatee/src/java/com/estampate/corteI/DAO/guardarRegistroDAO.java</file>
             <file>file:/C:/Users/AndresV/Documents/universidad%202015-II/arquitectura%20soft/Estampatee/web/inicio.jsp</file>
+            <file>file:/C:/Users/AndresV/Documents/universidad%202015-II/arquitectura%20soft/Estampatee/web/WEB-INF/web.xml</file>
         </group>
     </open-files>
 </project-private>
