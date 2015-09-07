@@ -4,6 +4,8 @@
     Author     : AndresV
 --%>
 
+<%@page import="com.estampate.corteI.hibernate.Artista"%>
+<%@page import="com.estampate.corteI.hibernate.EstampaCamiseta"%>
 <%@page import="com.estampate.corteI.hibernate.LugarEstampaCamiseta"%>
 <%@page import="com.estampate.corteI.hibernate.TamanoEstampa"%>
 <%@page import="java.util.ArrayList"%>
@@ -14,6 +16,15 @@
 <%
   HttpSession objSesion = request.getSession(false);
   String usuario = (String) (objSesion.getAttribute("idUsuaio"));
+  //TRAIGO EL ARTISTA DEL QUE VOY A BUSCAR LAS ESTAMPAS
+  int idArtista = Integer.parseInt(usuario);
+  datosGeneralesDAO infoUser = new datosGeneralesDAO();
+  Artista ar = infoUser.getArtista(idArtista);
+  //BUSCO LAS ESTAMPAS
+  datosGeneralesDAO estampasImg = new datosGeneralesDAO();
+  List<EstampaCamiseta> estampa = new ArrayList<EstampaCamiseta>();
+  estampa = estampasImg.getEstampas(ar);
+
 %>
 <!DOCTYPE html>
 <html>
@@ -31,6 +42,14 @@
         border-right-style:  solid;
         border-left-width: 1px;
         border-right-width: 1px;
+      }
+      img{
+        margin: 5px 5px 5px 5px;
+      }
+      .contenedor{
+        display: block;
+        width: 181px;
+        float: left;
       }
     </style>
   </head>
@@ -63,7 +82,7 @@
         <div class="col xs 8" id="adminDisenio">
 
         </div>
-        <div class="col xs 8" id="subirEstampa">
+        <div class="col xs 8" id="subirEstampa" style="display:none">
           <form class="form-horizontal" action="../guardarEstampa" method="post" role="form" enctype="multipart/form-data" >
             <div class="form-group">
               <label class="col-lg-2 control-label"  class="col-lg-2 control-label" for="nombre">Nombre:</label>
@@ -108,7 +127,7 @@
                 </select>
               </div>
             </div>
-                <div class="form-group">
+            <div class="form-group">
               <label class="col-lg-2 control-label"  for="ubicacion">Lugar de la estampa</label>
               <div class="col-lg-4">
                 <select class="form-control" name="ubicacion">
@@ -138,6 +157,17 @@
           </form>
         </div>
         <div class="col xs 8" id="verCatalogo">
+          <%
+            for (EstampaCamiseta est : estampa) {
+              out.print("<div class='contenedor'>");
+              out.print("<img src='../" + est.getImagenes() + "' alt='' width='140' height='100' />");
+              out.print("<br>");
+              out.print("<span>Nombre: " + est.getDescripcion() + "</span>");
+              out.print("<br>");
+              out.print("<span>Precio " + est.getPrecio() + "</span>");
+              out.print("</div>");
+            }
+          %>
 
         </div>
       </div>

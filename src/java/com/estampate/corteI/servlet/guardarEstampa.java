@@ -56,6 +56,8 @@ public class guardarEstampa extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     out.print(campos.get(1));
+    campos = new ArrayList<String>();
+
 //    out.print(subioImagen);
     out.close();
   }

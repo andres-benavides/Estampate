@@ -35,7 +35,7 @@
           <ul class="nav navbar-nav">
             <li><a href="artista/administrarEstampa.jsp">Administrar Estampas</a></li>
             <li><a href="#">Generar Reportes</a></li>
-            <li><a href="#">Modificar Perfil</a></li>
+            <li><a href="artista/modificarPerfil.jsp">Modificar Perfil</a></li>
           </ul>
         </div>
       </div>

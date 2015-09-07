@@ -75,9 +75,9 @@ public class guardarRegistroDAO {
     session = HibernateUtil.getSessionFactory().getCurrentSession();
     tx = session.beginTransaction();
 //    //Guardar la estampa
-//    this.session.save(estampa);
+    this.session.save(estampa);
 //    //Commit the transaction
-//    this.session.getTransaction().commit();
+    this.session.getTransaction().commit();
   }
 
 }

@@ -6,6 +6,7 @@
 package com.estampate.corteI.DAO;
 
 import com.estampate.corteI.hibernate.Artista;
+import com.estampate.corteI.hibernate.EstampaCamiseta;
 import com.estampate.corteI.hibernate.HibernateUtil;
 import com.estampate.corteI.hibernate.LugarEstampaCamiseta;
 import com.estampate.corteI.hibernate.RatingEstampa;
@@ -86,16 +87,18 @@ public class datosGeneralesDAO {
 
   public Artista getArtista(int idArtista) {
     Artista artista = new Artista();
+    tx = session.beginTransaction();
+    String msg = "";
     try {
-      tx = session.beginTransaction();
-      String hql = "from Artista where idArtista = :idArtista";
+      String hql = "from Artista a where a.idArtista = :idArtista";
       Query q = session.createQuery(hql);
-      q.setParameter("idArtista", idArtista);
-      artista = (Artista) q.list();
+      q.setInteger("idArtista", idArtista);
+       artista = (Artista)q.uniqueResult();
       if (!tx.wasCommitted())
         tx.commit();
 
     } catch (Exception e) {
+      msg = e.getMessage();
       e.printStackTrace();
     }
     return artista;
@@ -108,10 +111,10 @@ public class datosGeneralesDAO {
     LugarEstampaCamiseta lugar = new LugarEstampaCamiseta();
     try {
       tx = session.beginTransaction();
-      String hql = "from LugarEstampaCamiseta where idLugarEstampaCamiseta = :id";
+      String hql = "from LugarEstampaCamiseta l where l.idLugarEstampaCamiseta = :id";
       Query q = session.createQuery(hql);
       q.setParameter("id", id);
-      lugar = (LugarEstampaCamiseta) q.list();
+      lugar = (LugarEstampaCamiseta) q.uniqueResult();
       if (!tx.wasCommitted())
         tx.commit();
 
@@ -128,10 +131,10 @@ public class datosGeneralesDAO {
     TamanoEstampa tamano = new TamanoEstampa();
     try {
       tx = session.beginTransaction();
-      String hql = "from TamanoEstampa where idTamanoEstampa = :id";
+      String hql = "from TamanoEstampa t where t.idTamanoEstampa = :id";
       Query q = session.createQuery(hql);
       q.setParameter("id", id);
-      tamano = (TamanoEstampa) q.list();
+      tamano = (TamanoEstampa) q.uniqueResult();
       if (!tx.wasCommitted())
         tx.commit();
 
@@ -148,10 +151,10 @@ public class datosGeneralesDAO {
     TemaEstampa tema = new TemaEstampa();
     try {
       tx = session.beginTransaction();
-      String hql = "from TemaEstampa where idTemaEstampa = :id";
+      String hql = "from TemaEstampa e where e.idTemaEstampa = :id";
       Query q = session.createQuery(hql);
       q.setParameter("id", id);
-      tema = (TemaEstampa) q.list();
+      tema = (TemaEstampa) q.uniqueResult();
       if (!tx.wasCommitted())
         tx.commit();
  
@@ -168,10 +171,10 @@ public class datosGeneralesDAO {
     RatingEstampa rating = new RatingEstampa();
     try {
       tx = session.beginTransaction();
-      String hql = "from RatingEstampa where idRatingEstampa = :id";
+      String hql = "from RatingEstampa r where r.idRatingEstampa = :id";
       Query q = session.createQuery(hql);
       q.setParameter("id", id);
-      rating = (RatingEstampa) q.list();
+      rating = (RatingEstampa) q.uniqueResult();
       if (!tx.wasCommitted())
         tx.commit();
 
@@ -180,5 +183,23 @@ public class datosGeneralesDAO {
     }
     return rating;
   }
-
+  /*
+  BUSCO LAS ESTAMPAS DE UN ARTISTA
+  */
+  public List<EstampaCamiseta> getEstampas(Artista idArtista) {
+    List<EstampaCamiseta> estampas = new ArrayList<EstampaCamiseta>();
+    try {
+      tx = session.beginTransaction();
+      String hql = "from EstampaCamiseta es where es.artista = :artista";
+      Query q = session.createQuery(hql);
+      q.setParameter("artista", idArtista);
+      estampas = (List<EstampaCamiseta>) q.list();
+      if (!tx.wasCommitted())
+        tx.commit();
+    } catch (Exception e) {
+      e.printStackTrace();
+      //System.out.println(e.getMessage());
+    }
+    return estampas;
+  }
 }
