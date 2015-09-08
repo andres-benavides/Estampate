@@ -89,7 +89,7 @@
         </div>
         <div class="collapse navbar-collapse" >
           <a href="index.jsp"><button type="button" class="btn btn-default navbar-btn" id="btnSession">Volver</button></a>
-          <button type="button" class="btn btn-default navbar-btn" id="btnSession">Cerrar Sesion</button>
+          <a href="../index.jsp"><button type="button" class="btn btn-default navbar-btn" id="btnSession">Cerrar Sesion</button></a>
         </div>
       </div>
     </nav>
@@ -116,13 +116,13 @@
               <label class="col-lg-2 control-label"  class="col-lg-2 control-label" for="nombre">Nombre:</label>
               <div class="col-lg-4">
                 <input type="hidden" value="<%out.print(usuario);%>" name="idArtista" />
-                <input type="text" name="nombre" id="nombre" class="form-control" />
+                <input type="text" name="nombre" id="nombre" class="form-control" required  />
               </div>
             </div>
             <div class="form-group">
               <label class="col-lg-2 control-label"  for="temaEstampa">Tema estampa :</label>
               <div class="col-lg-4">
-                <select class="form-control" name="temaEstampa">
+                <select class="form-control" name="temaEstampa" required>
                   <%
                     datosGeneralesDAO estampas = new datosGeneralesDAO();
                     List<TemaEstampa> temasEstampas = new ArrayList<TemaEstampa>();
@@ -137,13 +137,13 @@
             <div class="form-group">
               <label class="col-lg-2 control-label"  for="precio">Precio</label>
               <div class="col-lg-4">
-                <input type="text" name="precio" id="precio" placeholder="Ingrese el precion sin punto o coma" class="form-control" />
+                <input type="number" name="precio" id="precio" required class="form-control" min="1" max="9999999999" />
               </div>
             </div>
             <div class="form-group">
               <label class="col-lg-2 control-label"  for="precio">Tamaño</label>
               <div class="col-lg-4">
-                <select class="form-control" name="tamanoEstampa">
+                <select class="form-control" name="tamanoEstampa" required>
                   <%
                     datosGeneralesDAO tamanos = new datosGeneralesDAO();
                     List<TamanoEstampa> tamanoEstampa = new ArrayList<TamanoEstampa>();
@@ -158,7 +158,7 @@
             <div class="form-group">
               <label class="col-lg-2 control-label"  for="ubicacion">Lugar de la estampa</label>
               <div class="col-lg-4">
-                <select class="form-control" name="ubicacion">
+                <select class="form-control" name="ubicacion" required>
                   <%
                     datosGeneralesDAO lugar = new datosGeneralesDAO();
                     List<LugarEstampaCamiseta> lugarEstampa = new ArrayList<LugarEstampaCamiseta>();
@@ -173,7 +173,7 @@
             <div class="form-group">
               <label class="col-lg-2 control-label"  for="cedula">Imagaen</label>
               <div class="col-lg-4">
-                <input type="file" name="estampa" id="estampa" class="form-control" />
+                <input type="file" name="estampa" id="estampa" accept="image/png" class="form-control" />
               </div>
             </div>
 

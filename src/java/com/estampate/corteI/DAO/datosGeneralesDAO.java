@@ -202,4 +202,23 @@ public class datosGeneralesDAO {
     }
     return estampas;
   }
+  /*
+  TRAER LA ESTAMPAS ORDENADAS POR UN PARAMETRO
+  */
+  public List<EstampaCamiseta> getEstampasXTema() {
+    List<EstampaCamiseta> estampas = new ArrayList<EstampaCamiseta>();
+    try {
+      tx = session.beginTransaction();
+      String hql = "from EstampaCamiseta es ORDER BY es.temaEstampa ";
+      Query q = session.createQuery(hql);
+      estampas = (List<EstampaCamiseta>) q.list();
+      if (!tx.wasCommitted())
+        tx.commit();
+    } catch (Exception e) {
+      e.printStackTrace();
+      //System.out.println(e.getMessage());
+    }
+    return estampas;
+  }
+  
 }

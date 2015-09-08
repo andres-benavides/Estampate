@@ -69,6 +69,7 @@ public class LogIn extends HttpServlet {
             int idUser = ar.getIdArtista(); //aqui tu identificador de usuario
             String idString = Integer.toString(idUser);
             objSesion.setAttribute("idUsuaio", idString );
+            ingresoArtista = false;
             response.sendRedirect("artista/index.jsp");
           }
         } else {
@@ -76,9 +77,12 @@ public class LogIn extends HttpServlet {
         }
       } else if (ingresoComprad) {
         if (comprador.size() > 0) {
-          for (Comprador ar : comprador) {
-            request.getRequestDispatcher("comprador/index.jsp").forward(request, response);
-            out.println("<h1> Bienvenido Comprador: " + ar.getUsuario() + "</h1>");
+          for (Comprador co : comprador) {
+             int idUser = co.getIdCliente(); //aqui tu identificador de usuario
+             String idString = Integer.toString(idUser);
+            objSesion.setAttribute("idUsuaio", idString );
+            ingresoComprad = false;
+            response.sendRedirect("comprador/index.jsp");
           }
         } else {
           out.println("<h1>Usuario no registrado</h1>");

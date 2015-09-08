@@ -30,10 +30,10 @@
             <form class="navbar-form navbar-left" method="POST" action="LogIn" role="search">
               <div class="form-group">
                 <input type="hidden" name="tipo" value="A" />
-                <input type="text" class="form-control" name="user" placeholder="Usuario">
+                <input type="text" class="form-control" name="user" placeholder="Usuario" required>
               </div>
               <div class="form-group">
-                <input type="password" class="form-control" name="passwrd" placeholder="Contraseña">
+                <input type="password" class="form-control" name="passwrd" placeholder="Contraseña" required>
               </div>
               <button type="submit" class="btn btn-success">Ingresar</button>
             </form>
@@ -50,43 +50,43 @@
               <label class="col-lg-2 control-label"  class="col-lg-2 control-label" for="nombre">Nombre:</label>
               <div class="col-lg-7">
                 <input type="hidden" name="tipo" value="A" />
-                <input type="text" name="nombre" id="nombre" class="form-control" />
+                <input type="text" name="nombre" id="nombre" class="form-control" required />
               </div>
             </div>
             <div class="form-group">
               <label class="col-lg-2 control-label"  for="apellido">Apellido:</label>
               <div class="col-lg-7">
-                <input type="text" name="apellido" id="apellido" class="form-control" />
+                <input type="text" name="apellido" id="apellido" class="form-control" required />
               </div>
             </div>
             <div class="form-group">
               <label class="col-lg-2 control-label"  for="direccion">Direccion:</label>
               <div class="col-lg-7">
-                <input type="text" name="direccion" id="direccion" class="form-control" />
+                <input type="text" name="direccion" id="direccion" class="form-control" required />
               </div>
             </div>
             <div class="form-group">
               <label class="col-lg-2 control-label"  for="cedula">Cedula:</label>
               <div class="col-lg-7">
-                <input type="number" name="cedula" id="cedula" class="form-control" />
+                <input type="number" name="cedula" id="cedula" class="form-control" required required min="1" max="9999999999" />
               </div>
             </div>
             <div class="form-group">
               <label class="col-lg-2 control-label"  for="celular">Celular:</label>
               <div class="col-lg-7">
-                <input type="number" name="celular" id="celular" class="form-control" />
+                <input type="number" name="celular" id="celular" class="form-control" required required min="1" max="9999999999" />
               </div>
             </div>
             <div class="form-group">
               <label class="col-lg-2 control-label"  for="usuario">Usuario:</label>
               <div class="col-lg-7">
-                <input type="text" name="usuario" id="usuario" class="form-control" />
+                <input type="text" name="usuario" id="usuario" class="form-control" required />
               </div>
             </div>
             <div class="form-group">
               <label class="col-lg-2 control-label"  for="password">Contraseña:</label>
               <div class="col-lg-7">
-                <input type="password" name="password" id="password" class="form-control" />
+                <input type="password" name="password" id="password" class="form-control" required />
               </div>
             </div>
             <div class="form-group">

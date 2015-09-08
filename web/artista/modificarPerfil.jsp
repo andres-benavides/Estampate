@@ -35,7 +35,7 @@
         </div>
         <div class="collapse navbar-collapse" >
           <a href="index.jsp"><button type="button" class="btn btn-default navbar-btn" id="btnSession">Volver</button></a>
-          <button type="button" class="btn btn-default navbar-btn" id="btnSession">Cerrar Sesion</button>
+          <a href="../index.jsp"><button type="button" class="btn btn-default navbar-btn" id="btnSession">Cerrar Sesion</button></a>
         </div>
       </div>
     </nav>

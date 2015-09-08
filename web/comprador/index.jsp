@@ -31,10 +31,9 @@
           <a class="navbar-brand" href="#">Estampate</a>
         </div>
         <div class="collapse navbar-collapse" >
-          <a href="../index.jsp"><button type="button" class="btn btn-default navbar-btn" id="btnSession">Cerrar Sesion</button></a>
+          <button type="button" class="btn btn-primary navbar-btn" id="btnSession">Cerrar Sesion</button>
           <ul class="nav navbar-nav">
-            <li><a href="administrarEstampa.jsp">Administrar Estampas</a></li>
-            <li><a href="#">Generar Reportes</a></li>
+            <li><a href="verCatalogo.jsp">Ver Catalogo</a></li>
             <li><a href="modificarPerfil.jsp">Modificar Perfil</a></li>
           </ul>
         </div>
