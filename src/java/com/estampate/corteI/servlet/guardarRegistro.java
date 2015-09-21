@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -26,6 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 public class guardarRegistro extends HttpServlet {
 
   private boolean registrado = false;
+  private String tipo = null;
 
   /**
    * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,6 +43,7 @@ public class guardarRegistro extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     try {
+       HttpSession objSesion = request.getSession(true); 
       /* SI EL USUARIO YA ESSTA REGISTRADO DEVUELVO "registrado" SI EL REGISTRO SE HIZO 
        *  CORRECTAMENTE DEVUELVO "ok"
        */
@@ -52,8 +55,14 @@ public class guardarRegistro extends HttpServlet {
           request.setAttribute("resultado", "registrado");
           request.getRequestDispatcher("index.jsp").forward(request, response);
         }
-      }else if (request.getParameter("modifica") != null) {
-        response.sendRedirect("artista/modificarPerfil.jsp");
+      } else if (request.getParameter("modifica") != null) {
+        if (tipo.equals("A")) {
+          objSesion.setAttribute("modifico", "ok" );
+          response.sendRedirect("artista/modificarPerfil.jsp");
+        }else if(tipo.equals("C")){
+          objSesion.setAttribute("modifico", "ok" );
+          response.sendRedirect("comprador/modificarPerfil.jsp");
+        }
       }
     } finally {
       out.close();
@@ -101,17 +110,27 @@ public class guardarRegistro extends HttpServlet {
     if (request.getParameter("modifica") == null) {
       validarLoginDAO validaUser = new validarLoginDAO();
       if (tipo.equals("C")) {
+        Comprador comprador = new Comprador(nombre, apellido, direccion, cedula, celular, usuario, password, null);
         registrado = validaUser.userRegistrado(usuario, "Comprador");
+        //CREO EL DAO PARA GUARDAR UN USUARIO O UN ARTISTA SEGUN EL "tipo"
+        guardarRegistroDAO registro = new guardarRegistroDAO();
+        //SI EL USUARIO NO ESTA REGISTRADO GUARDO EL REGISTRO
+        if (!registrado) {
+          registro.guardar(comprador, null, tipo);
+        }
       } else if (tipo.equals("A")) {
+        Artista artista = new Artista(nombre, apellido, direccion, cedula, celular, usuario, password);
         registrado = validaUser.userRegistrado(usuario, "Artista");
+        //CREO EL DAO PARA GUARDAR UN USUARIO O UN ARTISTA SEGUN EL "tipo"
+        guardarRegistroDAO registro = new guardarRegistroDAO();
+        //SI EL USUARIO NO ESTA REGISTRADO GUARDO EL REGISTRO
+        if (!registrado) {
+          registro.guardar(null, artista, tipo);
+        }
       }
-      //CREO EL DAO PARA GUARDAR UN USUARIO O UN ARTISTA SEGUN EL "tipo"
-      guardarRegistroDAO registro = new guardarRegistroDAO();
-      //SI EL USUARIO NO ESTA REGISTRADO GUARDO EL REGISTRO
-      if (!registrado) {
-        registro.guardar(nombre, apellido, direccion, cedula, celular, usuario, password, tipo);
-      }
+
     } else if (request.getParameter("modifica").equals("S")) {
+      this.tipo=tipo;
       guardarRegistroDAO registro = new guardarRegistroDAO();
       if (tipo.equals("A")) {
         //Artista artista = new Artista();
@@ -127,7 +146,16 @@ public class guardarRegistro extends HttpServlet {
         artista.setPassword(password);
         registro.actualizaArtista(artista);
       } else if (tipo.equals("C")) {
-        Comprador comprador = new Comprador(nombre, apellido, direccion, cedula, celular, usuario, password, null);
+         datosGeneralesDAO infoUser = new datosGeneralesDAO();
+        int id = Integer.parseInt(request.getParameter("id"));
+        Comprador comprador = infoUser.getComprador(id);
+        comprador.setNombre(nombre);
+        comprador.setApellido(apellido);
+        comprador.setDireccion(direccion);
+        comprador.setCedula(cedula);
+        comprador.setCelular(celular);
+        comprador.setUsuario(usuario);
+        comprador.setPassword(password);
         registro.actualizaComprador(comprador);
       }
     }

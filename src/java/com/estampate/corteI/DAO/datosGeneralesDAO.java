@@ -6,10 +6,14 @@
 package com.estampate.corteI.DAO;
 
 import com.estampate.corteI.hibernate.Artista;
+import com.estampate.corteI.hibernate.ColorCamiseta;
+import com.estampate.corteI.hibernate.Comprador;
 import com.estampate.corteI.hibernate.EstampaCamiseta;
 import com.estampate.corteI.hibernate.HibernateUtil;
 import com.estampate.corteI.hibernate.LugarEstampaCamiseta;
+import com.estampate.corteI.hibernate.MaterialCamiseta;
 import com.estampate.corteI.hibernate.RatingEstampa;
+import com.estampate.corteI.hibernate.TallaCamiseta;
 import com.estampate.corteI.hibernate.TamanoEstampa;
 import com.estampate.corteI.hibernate.TemaEstampa;
 import java.util.ArrayList;
@@ -81,6 +85,56 @@ public class datosGeneralesDAO {
     }
     return lugaresEstampa;
   }
+    /*
+   BUSCO LOS LUGARAES DE LAS ESTAMPAS Y DEVUELVO UN ARRAY
+   */
+
+  public List<ColorCamiseta> getColores() {
+    List<ColorCamiseta> colores = new ArrayList<ColorCamiseta>();
+    try {
+      tx = session.beginTransaction();
+      String hql = "from ColorCamiseta";
+      Query q = session.createQuery(hql);
+      colores = (List<ColorCamiseta>) q.list();
+      this.session.getTransaction().commit();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return colores;
+  }
+      /*
+   BUSCO LOS LUGARAES DE LAS ESTAMPAS Y DEVUELVO UN ARRAY
+   */
+
+  public List<TallaCamiseta> getTalla() {
+    List<TallaCamiseta> talla = new ArrayList<TallaCamiseta>();
+    try {
+      tx = session.beginTransaction();
+      String hql = "from TallaCamiseta";
+      Query q = session.createQuery(hql);
+      talla = (List<TallaCamiseta>) q.list();
+      this.session.getTransaction().commit();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return talla;
+  }
+  /*
+  
+  */
+   public List<MaterialCamiseta> getMaterial() {
+    List<MaterialCamiseta> material = new ArrayList<MaterialCamiseta>();
+    try {
+      tx = session.beginTransaction();
+      String hql = "from MaterialCamiseta";
+      Query q = session.createQuery(hql);
+      material = (List<MaterialCamiseta>) q.list();
+      this.session.getTransaction().commit();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return material;
+  }
   /*
    BUSCO UN ARTISTA POR ID Y LO RETORNO
    */
@@ -102,6 +156,29 @@ public class datosGeneralesDAO {
       e.printStackTrace();
     }
     return artista;
+  }
+  
+   /*
+   BUSCO UN COMPRADOR POR ID Y LO RETORNO
+   */
+
+  public Comprador getComprador(int idComprador) {
+    Comprador comprador = new Comprador();
+    tx = session.beginTransaction();
+    String msg = "";
+    try {
+      String hql = "from Comprador c where c.idCliente = :idCliente";
+      Query q = session.createQuery(hql);
+      q.setInteger("idCliente", idComprador);
+       comprador = (Comprador)q.uniqueResult();
+      if (!tx.wasCommitted())
+        tx.commit();
+
+    } catch (Exception e) {
+      msg = e.getMessage();
+      e.printStackTrace();
+    }
+    return comprador;
   }
   /*
    BUSCO UN LUGAR POR ID Y LO RETORNO

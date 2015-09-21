@@ -94,8 +94,8 @@
           <a class="navbar-brand" href="#">Estampate</a>
         </div>
         <div class="collapse navbar-collapse" >
-          <a href="index.jsp"><button type="button" class="btn btn-default navbar-btn" id="btnSession">Volver</button></a>
-          <button type="button" class="btn btn-default navbar-btn" id="btnSession">Cerrar Sesion</button>
+          <a href="index.jsp"><button type="button" class="btn btn-primary navbar-btn" id="btnSession">Volver</button></a>
+          <a href="../index.jsp"> <button type="button" class="btn btn-primary navbar-btn" id="btnSession">Cerrar Sesion</button></a>
         </div>
       </div>
     </nav>
@@ -121,7 +121,7 @@
            // tema = tamp.getTemaEstampa();
            //String json = tema.getTipoTema();
               out.print("<div class='contenedor'>");
-              out.print("<img src='../" + tamp.getImagenes() + "' alt='' width='140' height='100' />");
+              out.print("<a href='armarCamisa.jsp'><img src='../" + tamp.getImagenes() + "' alt='' width='140' height='100' /></a>");
               out.print("<br>");
               out.print("<span>Nombre: " + tamp.getDescripcion() + "</span>");
               out.print("<br>");
@@ -135,7 +135,7 @@
           <%
             for (EstampaCamiseta est : estampa) {
               out.print("<div class='contenedor'>");
-              out.print("<img src='../" + est.getImagenes() + "' alt='' width='140' height='100' />");
+              out.print("<a href='armarCamisa.jsp'><img src='../" + est.getImagenes() + "' alt='' width='140' height='100' /></a>");
               out.print("<br>");
               out.print("<span>Nombre: " + est.getDescripcion() + "</span>");
               out.print("<br>");

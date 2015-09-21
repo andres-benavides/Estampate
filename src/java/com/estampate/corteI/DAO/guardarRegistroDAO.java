@@ -25,37 +25,19 @@ public class guardarRegistroDAO {
     session = HibernateUtil.getSessionFactory().getCurrentSession();
   }
 
-  public void guardar(String nombre, String apellido, String direccion, String cedula, String celular, String usuario, String password, String tipo) {
+  public void guardar(Comprador comprador,Artista artista,String tipo) {
     try {
       this.tx = this.session.beginTransaction();
       if (tipo.equals("C")) {
-        Comprador com = new Comprador();
-        com.setNombre(nombre);
-        com.setApellido(apellido);
-        com.setDireccion(direccion);
-        com.setCedula(cedula);
-        com.setCelular(celular);
-        com.setUsuario(usuario);
-        com.setPassword(password);
         //Guardar el comprador
-        this.session.save(com);
+        this.session.save(comprador);
         //Commit the transaction
         this.session.getTransaction().commit();
         if (!tx.wasCommitted()) {
           tx.commit();
         }
-
       } else if (tipo.equals("A")) {
-        Artista art = new Artista();
-        art.setNombre(nombre);
-        art.setApellido(apellido);
-        art.setDireccion(direccion);
-        art.setCedula(cedula);
-        art.setCelular(celular);
-        art.setUsuario(usuario);
-        art.setPassword(password);
-        //Guardar el Artista
-        session.save(art);
+        session.save(artista);
         //Commit the transaction
         session.getTransaction().commit();
         if (!tx.wasCommitted()) {

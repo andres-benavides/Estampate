@@ -3,7 +3,10 @@
     Created on : 27/08/2015, 11:10:50 PM
     Author     : AndresV
 --%>
-
+<%
+ HttpSession objSesion = request.getSession(false);
+  objSesion.setAttribute("idUsuaio",null);
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

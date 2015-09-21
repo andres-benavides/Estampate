@@ -3,15 +3,16 @@
     Created on : 27/08/2015, 11:10:50 PM
     Author     : AndresV
 --%>
+<%@page import="com.estampate.corteI.hibernate.Comprador"%>
 <%@page import="com.estampate.corteI.hibernate.Artista"%>
 <%@page import="com.estampate.corteI.DAO.datosGeneralesDAO"%>
 <%
   HttpSession objSesion = request.getSession(false);
   String usuario = (String) (objSesion.getAttribute("idUsuaio"));
   String modifico = (String) (objSesion.getAttribute("modifico"));
-  int idArtista = Integer.parseInt(usuario);
+  int idComprador = Integer.parseInt(usuario);
   datosGeneralesDAO infoUser = new datosGeneralesDAO();
-  Artista ar = infoUser.getArtista(idArtista);
+  Comprador ar = infoUser.getComprador(idComprador);
  // out.print( ar.getNombre()+" "+idArtista);
 //  for(Artista pe:ar){
 //    
@@ -39,8 +40,8 @@
           <a class="navbar-brand" href="#">Estampate</a>
         </div>
         <div class="collapse navbar-collapse" >
-          <a href="index.jsp"><button type="button" class="btn btn-default navbar-btn" id="btnSession">Volver</button></a>
-          <a href="../index.jsp"><button type="button" class="btn btn-default navbar-btn" id="btnSession">Cerrar Sesion</button></a>
+          <a href="index.jsp"><button type="button" class="btn btn-primary navbar-btn" id="btnSession">Volver</button></a>
+          <a href="../index.jsp"><button type="button" class="btn btn-primary navbar-btn" id="btnSession">Cerrar Sesion</button></a>
         </div>
       </div>
     </nav>
@@ -52,7 +53,7 @@
             <div class="form-group">
               <label class="col-lg-2 control-label"  class="col-lg-2 control-label" for="nombre">Nombre:</label>
               <div class="col-lg-7">
-                <input type="hidden" name="tipo" value="A" />
+                <input type="hidden" name="tipo" value="C" />
                 <input type="hidden" name="modifica" value="S" />
                 <input type="hidden" name="id" value="<%out.print(usuario);%>" />
                 <input type="text" name="nombre" id="nombre" value="<% out.print(ar.getNombre());%>" class="form-control" />
